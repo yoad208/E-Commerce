@@ -4,17 +4,15 @@
     "username": "admin",
     "password": "admin",
     "role": "admin",
-    "status": "active",
     "createdAt": "2022-09-15T08:00:00.000Z",
     "updatedAt": "2022-09-15T08:00:00.000Z"
   },
   "users": [
     {
       "id": 123,
-      "username": "user",
-      "password": "user",
+      "username": "yoad",
+      "password": "YOADazani208@",
       "role": "user",
-      "status": "active",
       "createdAt": "2022-09-15T08:00:00.000Z",
       "updatedAt": "2022-09-15T08:00:00.000Z",
       "address": []
@@ -86,7 +84,6 @@
       "amount": 5,
       "rating": 4,
       "inStock": true,
-      "isFav": false,
       "colors": [],
       "sizes": [
         "xs",
@@ -103,8 +100,7 @@
         "style": "slim fit",
         "department": "man"
       },
-      "picture": "https://img.ltwebstatic.com/images3_pi/2022/09/15/16632532061ecb0459dd43abd2503951cf2b63d553_thumbnail_405x552.webp",
-      "quantity": 0
+      "picture": "https://img.ltwebstatic.com/images3_pi/2022/09/15/16632532061ecb0459dd43abd2503951cf2b63d553_thumbnail_405x552.webp"
     },
     {
       "userId": 123,
@@ -116,7 +112,6 @@
       "amount": 5,
       "rating": 4,
       "inStock": true,
-      "isFav": false,
       "colors": [],
       "sizes": [
         "xs",
@@ -133,8 +128,7 @@
         "style": "slim fit",
         "department": "man"
       },
-      "picture": "https://img.ltwebstatic.com/images3_pi/2022/09/15/16632532061ecb0459dd43abd2503951cf2b63d553_thumbnail_405x552.webp",
-      "quantity": 0
+      "picture": "https://img.ltwebstatic.com/images3_pi/2022/09/15/16632532061ecb0459dd43abd2503951cf2b63d553_thumbnail_405x552.webp"
     },
     {
       "userId": 123,
@@ -146,7 +140,6 @@
       "amount": 5,
       "rating": 5,
       "inStock": true,
-      "isFav": false,
       "colors": [],
       "sizes": [
         "xs",
@@ -163,8 +156,7 @@
         "style": "slim fit",
         "department": "man"
       },
-      "picture": "https://img.ltwebstatic.com/images3_pi/2022/09/15/16632532061ecb0459dd43abd2503951cf2b63d553_thumbnail_405x552.webp",
-      "quantity": 0
+      "picture": "https://img.ltwebstatic.com/images3_pi/2022/09/15/16632532061ecb0459dd43abd2503951cf2b63d553_thumbnail_405x552.webp"
     },
     {
       "userId": 123,
@@ -176,7 +168,6 @@
       "amount": 5,
       "rating": 5,
       "inStock": true,
-      "isFav": false,
       "colors": [],
       "sizes": [
         "xs",
@@ -193,8 +184,7 @@
         "style": "slim fit",
         "department": "man"
       },
-      "picture": "https://img.ltwebstatic.com/images3_pi/2022/09/15/16632532061ecb0459dd43abd2503951cf2b63d553_thumbnail_405x552.webp",
-      "quantity": 0
+      "picture": "https://img.ltwebstatic.com/images3_pi/2022/09/15/16632532061ecb0459dd43abd2503951cf2b63d553_thumbnail_405x552.webp"
     },
     {
       "userId": 123,
@@ -206,7 +196,6 @@
       "amount": 5,
       "rating": 3,
       "inStock": true,
-      "isFav": false,
       "colors": [],
       "sizes": [
         "xs",
@@ -223,8 +212,7 @@
         "style": "slim fit",
         "department": "man"
       },
-      "picture": "https://img.ltwebstatic.com/images3_pi/2022/09/15/16632532061ecb0459dd43abd2503951cf2b63d553_thumbnail_405x552.webp",
-      "quantity": 0
+      "picture": "https://img.ltwebstatic.com/images3_pi/2022/09/15/16632532061ecb0459dd43abd2503951cf2b63d553_thumbnail_405x552.webp"
     },
     {
       "userId": 123,
@@ -236,7 +224,6 @@
       "amount": 5,
       "rating": 1,
       "inStock": true,
-      "isFav": false,
       "colors": [],
       "sizes": [
         "xs",
@@ -253,8 +240,7 @@
         "style": "slim fit",
         "department": "man"
       },
-      "picture": "https://img.ltwebstatic.com/images3_pi/2022/09/15/16632532061ecb0459dd43abd2503951cf2b63d553_thumbnail_405x552.webp",
-      "quantity": 0
+      "picture": "https://img.ltwebstatic.com/images3_pi/2022/09/15/16632532061ecb0459dd43abd2503951cf2b63d553_thumbnail_405x552.webp"
     },
     {
       "userId": 123,
@@ -266,7 +252,6 @@
       "amount": 5,
       "rating": 5,
       "inStock": true,
-      "isFav": false,
       "colors": [
         "white",
         "teal"
@@ -284,8 +269,7 @@
         "style": "slim fit",
         "department": "woman"
       },
-      "picture": "https://img.ltwebstatic.com/images3_pi/2022/10/19/16661634745d99b7ef5110f554ed1e41fe4d1c1a0f_thumbnail_900x.webp",
-      "quantity": 0
+      "picture": "https://img.ltwebstatic.com/images3_pi/2022/10/19/16661634745d99b7ef5110f554ed1e41fe4d1c1a0f_thumbnail_900x.webp"
     },
     {
       "userId": 123,
@@ -297,7 +281,6 @@
       "amount": 5,
       "rating": 5,
       "inStock": true,
-      "isFav": false,
       "colors": [
         "lightblue",
         "teal",
@@ -317,8 +300,7 @@
         "style": "slim fit",
         "department": "woman"
       },
-      "picture": "https://img.ltwebstatic.com/images3_pi/2022/10/15/1665763244d3c49412b6c8f128ba2411d393d86d69_thumbnail_900x.webp",
-      "quantity": 0
+      "picture": "https://img.ltwebstatic.com/images3_pi/2022/10/15/1665763244d3c49412b6c8f128ba2411d393d86d69_thumbnail_900x.webp"
     },
     {
       "userId": 123,
@@ -349,9 +331,7 @@
         "style": "slim fit",
         "department": "woman"
       },
-      "picture": "https://img.ltwebstatic.com/images3_pi/2022/11/01/1667287212a336aab19b1940ef6cc7d76e6a6409b3_thumbnail_900x.webp",
-      "quantity": 0,
-      "isFav": false
+      "picture": "https://img.ltwebstatic.com/images3_pi/2022/11/01/1667287212a336aab19b1940ef6cc7d76e6a6409b3_thumbnail_900x.webp"
     },
     {
       "userId": 123,
@@ -363,7 +343,6 @@
       "amount": 0,
       "rating": 5,
       "inStock": true,
-      "isFav": false,
       "colors": [],
       "sizes": [],
       "itemSpecifics": {
@@ -373,8 +352,7 @@
         "style": "regular fit",
         "department": "man"
       },
-      "picture": "https://img.ltwebstatic.com/images3_pi/2022/09/07/166254378591358beb009e33e1f9cdf754630fa9e9_thumbnail_405x552.webp",
-      "quantity": 0
+      "picture": "https://img.ltwebstatic.com/images3_pi/2022/09/07/166254378591358beb009e33e1f9cdf754630fa9e9_thumbnail_405x552.webp"
     },
     {
       "userId": 123,
@@ -386,7 +364,6 @@
       "amount": 5,
       "rating": 2,
       "inStock": true,
-      "isFav": false,
       "colors": [],
       "sizes": [],
       "itemSpecifics": {
@@ -396,8 +373,7 @@
         "style": "regular fit",
         "department": "man"
       },
-      "picture": "https://img.ltwebstatic.com/images3_pi/2022/09/07/166254378591358beb009e33e1f9cdf754630fa9e9_thumbnail_405x552.webp",
-      "quantity": 0
+      "picture": "https://img.ltwebstatic.com/images3_pi/2022/09/07/166254378591358beb009e33e1f9cdf754630fa9e9_thumbnail_405x552.webp"
     },
     {
       "userId": 123,
@@ -409,7 +385,6 @@
       "amount": 5,
       "rating": 4,
       "inStock": true,
-      "isFav": false,
       "colors": [
         "black",
         "skyblue",
@@ -430,8 +405,7 @@
         "style": "slim fit",
         "department": "man"
       },
-      "picture": "https://img.ltwebstatic.com/images3_pi/2022/05/23/16532696012e39ba9d6ce2d081204a2dfb0f471162_thumbnail_405x552.webp",
-      "quantity": 0
+      "picture": "https://img.ltwebstatic.com/images3_pi/2022/05/23/16532696012e39ba9d6ce2d081204a2dfb0f471162_thumbnail_405x552.webp"
     },
     {
       "userId": 123,
@@ -443,7 +417,6 @@
       "amount": 5,
       "rating": 4,
       "inStock": true,
-      "isFav": false,
       "colors": [
         "black",
         "skyblue",
@@ -464,8 +437,7 @@
         "style": "slim fit",
         "department": "man"
       },
-      "picture": "https://img.ltwebstatic.com/images3_pi/2022/05/23/16532696012e39ba9d6ce2d081204a2dfb0f471162_thumbnail_405x552.webp",
-      "quantity": 0
+      "picture": "https://img.ltwebstatic.com/images3_pi/2022/05/23/16532696012e39ba9d6ce2d081204a2dfb0f471162_thumbnail_405x552.webp"
     },
     {
       "userId": 123,
@@ -477,7 +449,6 @@
       "amount": 5,
       "rating": 4,
       "inStock": true,
-      "isFav": false,
       "colors": [
         "black"
       ],
@@ -494,8 +465,7 @@
         "style": "slim fit",
         "department": "woman"
       },
-      "picture": "https://img.ltwebstatic.com/images3_pi/2022/10/25/1666675423725ff2ac578c2f505ca12a40f13dac6d_thumbnail_900x.webp",
-      "quantity": 0
+      "picture": "https://img.ltwebstatic.com/images3_pi/2022/10/25/1666675423725ff2ac578c2f505ca12a40f13dac6d_thumbnail_900x.webp"
     },
     {
       "userId": 123,
@@ -528,9 +498,7 @@
         "style": "slim fit",
         "department": "woman"
       },
-      "picture": "https://img.ltwebstatic.com/images3_pi/2023/01/28/16748827074c9e2fe9e0846b8c39347fa3d2ef1ab1_thumbnail_900x.webp",
-      "quantity": 0,
-      "isFav": false
+      "picture": "https://img.ltwebstatic.com/images3_pi/2023/01/28/16748827074c9e2fe9e0846b8c39347fa3d2ef1ab1_thumbnail_900x.webp"
     },
     {
       "userId": 123,
@@ -542,7 +510,6 @@
       "amount": 5,
       "rating": 4,
       "inStock": true,
-      "isFav": false,
       "colors": [
         "black",
         "green",
@@ -565,8 +532,7 @@
         "style": "slim fit",
         "department": "woman"
       },
-      "picture": "https://img.ltwebstatic.com/images3_pi/2022/09/30/1664501136cb4b23c5c6aea620b92c5eea7ba868c7_thumbnail_900x.webp",
-      "quantity": 0
+      "picture": "https://img.ltwebstatic.com/images3_pi/2022/09/30/1664501136cb4b23c5c6aea620b92c5eea7ba868c7_thumbnail_900x.webp"
     }
   ],
   "wishList": [],

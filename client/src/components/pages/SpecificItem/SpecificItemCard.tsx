@@ -12,6 +12,7 @@ import {addWishListItem} from "../../../api/wishListApi";
 import {useWishList} from "../../../hooks/useWishList";
 import {IWishListItem} from "../../../interfaces/IWishList.interface";
 import {useProducts} from "../../../hooks/useProducts";
+
 interface specificProductCard extends CardProps {
     product: ISpecificProduct
 }
@@ -20,7 +21,6 @@ export const SpecificItemCard: FC<specificProductCard> = ({product, ...rest}) =>
 
     const [selectedColor, setSelectedColor] = useState(product?.colors[0] || '')
     const [selectedSize, setSelectedSize] = useState(product?.sizes[0] || '')
-    const {updateSpecificProduct} = useProducts()
     const {addToCart} = useShoppingCart()
     const {wishListData, addToWishList, deleteFromWishList} = useWishList()
 
@@ -43,18 +43,13 @@ export const SpecificItemCard: FC<specificProductCard> = ({product, ...rest}) =>
         item.productID === product.id
     )
     const handleFavorites = (item: IWishListItem) => {
-        if (item) {
-            updateSpecificProduct({...product, isFav: false})
-            return deleteFromWishList(item.id)
-        } else {
-            updateSpecificProduct({...product, isFav: true})
-            return addToWishList({
-                id: uuidV4(),
-                productID: product.id,
-                color: product.colors[0],
-                size: product.sizes[0]
-            })
-        }
+        if (item) return deleteFromWishList(item.id)
+        return addToWishList({
+            id: uuidV4(),
+            productID: product.id,
+            color: product.colors[0],
+            size: product.sizes[0]
+        })
     }
 
     return <Card {...rest}>
@@ -145,7 +140,7 @@ export const SpecificItemCard: FC<specificProductCard> = ({product, ...rest}) =>
                         icon={AiFillHeart}
                         fontSize={28}
                         cursor={'pointer'}
-                        color={product?.isFav ? 'blackAlpha.900' : 'blackAlpha.300'}
+                        color={wishListData?.find(i => i.productID === product.id) ? 'blackAlpha.900' : 'blackAlpha.300'}
                         onClick={() => handleFavorites(item as IWishListItem)}
                     />
                 </HStack>

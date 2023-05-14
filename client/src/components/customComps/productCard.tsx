@@ -36,26 +36,19 @@ export const ProductCard: FC<cardProps> = ({product, ...rest}) => {
         wishListData
     } = useWishList()
 
-    const {updateSpecificProduct} = useProducts()
-
     const item = wishListData?.find(item =>
         item.productID === product.id
     )
 
     const navigateToCurrentPage = () => navigate(`/store/item/${product.id}`)
     const handleFavorites = (item: IWishListItem) => {
-        if (item) {
-            updateSpecificProduct({...product, isFav: false})
-            return deleteFromWishList(item.id)
-        } else {
-            updateSpecificProduct({...product, isFav: true})
-            return addToWishList({
-                id: uuidV4(),
-                productID: product.id,
-                color: product.colors[0],
-                size: product.sizes[0]
-            })
-        }
+        if (item) return deleteFromWishList(item.id)
+        return addToWishList({
+            id: uuidV4(),
+            productID: product.id,
+            color: product.colors[0],
+            size: product.sizes[0]
+        })
     }
 
     return <Card {...rest}>
@@ -81,7 +74,11 @@ export const ProductCard: FC<cardProps> = ({product, ...rest}) => {
                 top={1}
                 right={1}
                 cursor={"pointer"}
-                color={product.isFav ? "black" : "blackAlpha.400"}
+                color={
+                    wishListData?.find(i => i.productID === product.id)
+                        ? "black"
+                        : "blackAlpha.400"
+                }
                 icon={AiFillHeart}
                 onClick={() => handleFavorites(item as IWishListItem)}
             />

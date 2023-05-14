@@ -15,7 +15,7 @@ import {v4 as uuidV4} from "uuid";
 export const WishListCard: FC<IWishListCard> = ({item, gridTemplate}) => {
 
     const navigate = useNavigate()
-    const {productsArray, updateSpecificProduct} = useProducts()
+    const {productsArray} = useProducts()
     const {addToCart} = useShoppingCart()
     const {deleteFromWishList} = useWishList()
     const [isLargerThen480] = useMediaQuery('(min-width: 480px)')
@@ -28,10 +28,6 @@ export const WishListCard: FC<IWishListCard> = ({item, gridTemplate}) => {
         setLoading(true)
         setTimeout(() => {
             deleteFromWishList(item.id)
-            updateSpecificProduct({
-                ...productsArray?.find((i: IProducts) => i.id === item.productID),
-                isFav: false
-            })
             setLoading(false)
         }, 1000)
     }

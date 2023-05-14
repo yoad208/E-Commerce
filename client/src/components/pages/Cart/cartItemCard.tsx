@@ -23,7 +23,7 @@ export const CartItemCard: FC<IShoppingCartItem> = ({productID, id, color, size,
     const navigate = useNavigate()
     const [isLargerThen441] = useMediaQuery('(min-width: 441px)')
     const {addToWishList} = useWishList()
-    const {productsArray, updateSpecificProduct} = useProducts()
+    const {productsArray} = useProducts()
     const {deleteCartItem, updateCartItem} = useShoppingCart()
     const cartItem = productsArray?.find((item: IProducts) => item.id === productID)
     const [loading, setLoading] = useState(false)
@@ -44,10 +44,6 @@ export const CartItemCard: FC<IShoppingCartItem> = ({productID, id, color, size,
                 productID: cartItem.id,
                 color: cartItem.color,
                 size: cartItem.size
-            })
-            updateSpecificProduct({
-                ...productsArray?.find((i: IProducts) => i.id === cartItem.productID),
-                isFav: true
             })
             deleteCartItem(cartItem.id)
             setLoading(false)

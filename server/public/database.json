@@ -10,8 +10,8 @@
   "users": [
     {
       "id": 123,
-      "username": "user",
-      "password": "user",
+      "username": "yoad",
+      "password": "YOADazani208@",
       "role": "user",
       "createdAt": "2022-09-15T08:00:00.000Z",
       "updatedAt": "2022-09-15T08:00:00.000Z",

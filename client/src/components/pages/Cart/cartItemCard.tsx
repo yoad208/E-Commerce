@@ -1,10 +1,8 @@
-import React, {FC, useContext, useEffect, useState} from "react";
+import {FC, useState} from "react";
 import {IShoppingCartItem} from "../../../interfaces/IShoppingCartItem.interface";
 import {
     HStack, Image, Stack,
-    Tr,
-    Td,
-    Text, useMediaQuery, Checkbox, Box, Divider, Spacer, Spinner
+    Text, useMediaQuery, Checkbox, Divider, Spacer, Spinner
 } from "@chakra-ui/react";
 import {Icon} from "@chakra-ui/icons";
 import {AiFillHeart, BsTrash} from "react-icons/all";
@@ -18,6 +16,7 @@ import {useProducts} from "../../../hooks/useProducts";
 import {IProducts} from "../../../interfaces/Iproducts.interface";
 import {useNavigate} from "react-router-dom";
 import {v4 as uuidV4} from "uuid";
+
 export const CartItemCard: FC<IShoppingCartItem> = ({productID, id, color, size, quantity, isChecked}) => {
 
     const navigate = useNavigate()
@@ -45,14 +44,14 @@ export const CartItemCard: FC<IShoppingCartItem> = ({productID, id, color, size,
                 color: cartItem.color,
                 size: cartItem.size
             })
-            deleteCartItem(cartItem.id)
+            deleteCartItem(id)
             setLoading(false)
         }, 1000)
     }
 
 
     return <>
-        <HStack px={2} align={'flex-start'} pos={"relative"} opacity={loading ? 0.5: 1}>
+        <HStack px={2} align={'flex-start'} pos={"relative"} opacity={loading ? 0.5 : 1}>
             {loading && <Spinner pos={'absolute'} top={'35%'} left={'50%'}/>}
             <Checkbox
                 isChecked={isChecked}

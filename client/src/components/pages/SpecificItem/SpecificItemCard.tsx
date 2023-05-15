@@ -1,4 +1,4 @@
-import React, {FC, useMemo, useState} from 'react';
+import {FC, useState} from 'react';
 import {ISpecificProduct} from "../../../interfaces/IspecificProduct.interface";
 import {Box, Button, Card, CardBody, CardHeader, CardProps, HStack, Image, Stack, Text} from "@chakra-ui/react";
 import {formatCurrency} from "../../../utilities/formatCurrency";
@@ -8,10 +8,7 @@ import {ProductTabs} from "./productTabs";
 import {FavouritesButton} from "../../customComps/favouritesButton";
 import {useShoppingCart} from "../../../hooks/useShoppingCart";
 import {v4 as uuidV4} from "uuid";
-import {addWishListItem} from "../../../api/wishListApi";
 import {useWishList} from "../../../hooks/useWishList";
-import {IWishListItem} from "../../../interfaces/IWishList.interface";
-import {useProducts} from "../../../hooks/useProducts";
 
 interface specificProductCard extends CardProps {
     product: ISpecificProduct
@@ -37,13 +34,9 @@ export const SpecificItemCard: FC<specificProductCard> = ({product, ...rest}) =>
         }
     }
 
-    // TODO make clean code for this because is exist in ProductCard component
-
-    const item = wishListData?.find(item =>
-        item.productID === product.id
-    )
-    const handleFavorites = (item: IWishListItem) => {
-        if (item) return deleteFromWishList(item.id)
+    const handleFavorites = () => {
+        let existingItem = wishListData?.find(i => i.productID === product.id)
+        if (existingItem) return deleteFromWishList(existingItem.id)
         return addToWishList({
             id: uuidV4(),
             productID: product.id,
@@ -141,7 +134,7 @@ export const SpecificItemCard: FC<specificProductCard> = ({product, ...rest}) =>
                         fontSize={28}
                         cursor={'pointer'}
                         color={wishListData?.find(i => i.productID === product.id) ? 'blackAlpha.900' : 'blackAlpha.300'}
-                        onClick={() => handleFavorites(item as IWishListItem)}
+                        onClick={handleFavorites}
                     />
                 </HStack>
                 <ProductTabs product={product}/>

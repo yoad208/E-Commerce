@@ -30,8 +30,9 @@ export const useShoppingCart = () => {
         )
 
     const {mutate: addToCart} = useMutation({
-        mutationFn: (newItem: IShoppingCartItem) => {
-            let item = (shoppingCartData || []).find(currentItem =>
+        mutationFn: (newItem: IShoppingCartItem): Promise<IShoppingCartItem | undefined> => {
+
+            let item: IShoppingCartItem | undefined = (shoppingCartData || []).find(currentItem =>
                 currentItem.productID === newItem.productID &&
                 currentItem.color === newItem.color &&
                 currentItem.size === newItem.size
@@ -55,8 +56,8 @@ export const useShoppingCart = () => {
     })
 
     const {mutate: updateCartItem} = useMutation({
-        mutationFn: async (item: IShoppingCartItem) => {
-            return await (item.quantity === 0)
+        mutationFn: (item: IShoppingCartItem) => {
+            return (item.quantity === 0)
                 ? deleteSoppingCartItems(item.id)
                 : updateSoppingCartItems(item)
         },

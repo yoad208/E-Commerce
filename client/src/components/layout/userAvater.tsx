@@ -12,7 +12,7 @@ export const UserAvatar: FC = () => {
         </MenuButton>
         <MenuList>
             <MenuItem borderBottomWidth={2} borderBottomColor={'blackAlpha.400'}>
-                <ConnectAccountModal/>
+                <ConnectAccountModal btnText={'sign-in / register'}/>
             </MenuItem>
             <MenuItem>
                 <Logout w={"full"} cursor='pointer' onClick={signOut}/>

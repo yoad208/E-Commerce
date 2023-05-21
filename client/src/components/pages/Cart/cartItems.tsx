@@ -15,13 +15,7 @@ export const CartItems: FC<ICartItems> = ({shoppingCartData, ...rest}) => {
                 ? shoppingCartData?.map(item => {
                     return <CartItemCard
                         key={item.id}
-                        id={item.id}
-                        userID={item.userID}
-                        productID={item.productID}
-                        color={item.color}
-                        size={item.size}
-                        quantity={item.quantity}
-                        isChecked={item.isChecked}
+                        item={item}
                     />
                 })
                 : <EmptyCartMessage/>

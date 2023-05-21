@@ -3,6 +3,7 @@ import {Button, Image, Text, VStack} from "@chakra-ui/react";
 import {useNavigate} from "react-router-dom";
 import {isAuthenticated} from "react-auth-kit/dist/utils/utils";
 import {useIsAuthenticated} from "react-auth-kit";
+import {ConnectAccountModal} from "../../modals/connectAccountModal";
 
 export const EmptyCartMessage: FC = () => {
 
@@ -27,9 +28,13 @@ export const EmptyCartMessage: FC = () => {
                 <Text>
                     sign in to view your cart and start shopping
                 </Text>
-                <Button w={'full'} maxW={'250px'} colorScheme={'blackAlpha'} bg={'black'}
-                        children={'SIGN IN / REGISTER'}/>
-                <Button w={'full'} maxW={'250px'} colorScheme={"blackAlpha"} variant={'outline'} children={'SHOP NOW'}/>
+                <Button
+                    w={'full'}
+                    maxW={'250px'}
+                    colorScheme={'blackAlpha'}
+                    bg={'black'}
+                    children={<ConnectAccountModal btnText={'SIGN IN / REGISTER'}/>}
+                />
             </>
         }
     </VStack>

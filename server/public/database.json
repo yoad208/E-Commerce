@@ -555,16 +555,22 @@
       "userID": "d1d6df83-19be-415c-b9e8-08ca43f85a87",
       "productID": "8",
       "size": "xs"
+    },
+    {
+      "id": "a5300937-da07-4686-b312-854d4e9d09b6",
+      "userID": "d1d6df83-19be-415c-b9e8-08ca43f85a87",
+      "productID": "1",
+      "size": "xs"
     }
   ],
   "shoppingCart": [
     {
-      "id": "8259238c-bb82-47e4-976c-5c0d2c24465c",
+      "id": "207fc07a-2ee0-4d1f-bfb2-e672970b0c7b",
       "userID": "d1d6df83-19be-415c-b9e8-08ca43f85a87",
       "productID": "1",
       "color": "",
       "size": "xs",
-      "quantity": 2,
+      "quantity": 1,
       "isChecked": false
     }
   ]

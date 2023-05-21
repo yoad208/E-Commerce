@@ -2,6 +2,7 @@ import React from 'react';
 import {Button, Image, Text, VStack} from "@chakra-ui/react";
 import {useNavigate} from "react-router-dom";
 import {useIsAuthenticated} from "react-auth-kit";
+import {ConnectAccountModal} from "../../modals/connectAccountModal";
 
 export const EmptyWishListMessage = () => {
 
@@ -33,9 +34,13 @@ export const EmptyWishListMessage = () => {
                 <Text>
                     sign in to view your wishList and start shopping
                 </Text>
-                <Button w={'full'} maxW={'250px'} colorScheme={'blackAlpha'} bg={'black'}
-                        children={'SIGN IN / REGISTER'}/>
-                <Button w={'full'} maxW={'250px'} colorScheme={"blackAlpha"} variant={'outline'} children={'SHOP NOW'}/>
+                <Button
+                    w={'full'}
+                    maxW={'250px'}
+                    colorScheme={'blackAlpha'}
+                    bg={'black'}
+                    children={<ConnectAccountModal btnText={'SIGN IN / REGISTER'}/>}
+                />
             </>
         }
     </VStack>

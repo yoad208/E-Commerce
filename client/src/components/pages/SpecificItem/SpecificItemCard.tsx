@@ -19,8 +19,8 @@ interface specificProductCard extends CardProps {
 
 export const SpecificItemCard: FC<specificProductCard> = ({product, ...rest}) => {
 
-    const [selectedColor, setSelectedColor] = useState(product?.colors[0] || '')
-    const [selectedSize, setSelectedSize] = useState(product?.sizes[0] || '')
+    const [selectedColor, setSelectedColor] = useState( product.colors[0] || '')
+    const [selectedSize, setSelectedSize] = useState(product.sizes[0] ||'')
     const {addToCart} = useShoppingCart()
     const {wishListData, addToWishList, deleteFromWishList} = useWishList()
     const {ErrorToast} = useToastMessages()

@@ -13,14 +13,16 @@ import {LoginForm} from "./loginForm";
 import {Icon} from "@chakra-ui/icons";
 import {AiOutlineClose} from "react-icons/all";
 
-
-export const ConnectAccountModal: FC = () => {
+type Props = {
+    btnText: string
+}
+export const ConnectAccountModal: FC<Props> = ({btnText}) => {
 
     const {isOpen, onOpen, onClose} = useDisclosure()
     const [haveAccount, setHaveAccount] = useState<boolean>(false)
 
     return <>
-        <Text cursor='pointer' width={'100%'} onClick={onOpen}>sign-in / register</Text>
+        <Text cursor='pointer' width={'100%'} onClick={onOpen}>{btnText}</Text>
         <Modal isOpen={isOpen} onClose={onClose}>
             <ModalOverlay/>
             <ModalContent m={'auto'} p={0} maxW={'550px'}>

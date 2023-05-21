@@ -19,6 +19,8 @@ import {AiFillHeart, AiFillStar} from "react-icons/all";
 import {FavouritesButton} from "./favouritesButton";
 import {useWishList} from "../../hooks/useWishList";
 import {v4 as uuidV4} from "uuid";
+import {useAuthUser, useIsAuthenticated} from "react-auth-kit";
+import {useToastMessages} from "../../hooks/useToastMessages";
 
 interface cardProps extends CardProps {
     product: IProducts
@@ -28,6 +30,9 @@ export const ProductCard: FC<cardProps> = ({product, ...rest}) => {
 
     const navigate = useNavigate()
     const [isLargerThen480] = useMediaQuery('(min-width: 480px)')
+    const isAuthenticated = useIsAuthenticated()
+    const {ErrorToast} = useToastMessages()
+    const auth = useAuthUser()
     const {
         deleteFromWishList,
         addToWishList,
@@ -37,10 +42,12 @@ export const ProductCard: FC<cardProps> = ({product, ...rest}) => {
     const navigateToCurrentPage = () => navigate(`/store/item/${product.id}`)
 
     const handleFavorites = () => {
+        if (!isAuthenticated()) return ErrorToast('You must be logged in to add to favorites')
         let existingItem = wishListData?.find(i => i.productID === product.id)
         if (existingItem) return deleteFromWishList(existingItem.id)
         addToWishList({
             id: uuidV4(),
+            userID: auth()?.id,
             productID: product.id,
             color: product.colors[0],
             size: product.sizes[0]

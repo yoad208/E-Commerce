@@ -28,11 +28,15 @@ export const WishList = () => {
     return <>
         <PageBreadcrumb title={'Favorites'}/>
         <Container maxW={"container.xl"} px={{base: 2, md: 12}} pt={5} pb={"5rem"}>
-            <Heading fontSize={20} textAlign={'center'} pb={2} children={"My Wish List"}/>
-            <HStack w={'100%'} bg={"white"} justify={'space-between'} boxShadow={"md"} rounded={"md"} p={2}>
-                <SortBy/>
-                <GenerateGridTemplate setGridTemplate={setGridTemplate}/>
-            </HStack>
+            {
+                (wishListData || [])?.length > 0 && <>
+                    <Heading fontSize={20} textAlign={'center'} pb={2} children={"My Wish List"}/>
+                    <HStack w={'100%'} bg={"white"} justify={'space-between'} boxShadow={"md"} rounded={"md"} p={2}>
+                        <SortBy/>
+                        <GenerateGridTemplate setGridTemplate={setGridTemplate}/>
+                    </HStack>
+                </>
+            }
             <Box bg={'white'} w={'100%'} my={3} boxShadow={"md"} rounded={"md"}>
                 {(wishListData || [])?.length > 0 ? <SimpleGrid
                     columns={{

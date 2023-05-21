@@ -9,12 +9,36 @@
   },
   "users": [
     {
-      "id": 123,
-      "username": "yoad",
-      "password": "YOADazani208@",
+      "id": "3ee66a86-fea9-45ff-b574-7957e8be4240",
+      "userName": "yoad",
+      "email": "asdfg@asdfg",
+      "phone": "123456789",
+      "password": "12345678",
       "role": "user",
-      "createdAt": "2022-09-15T08:00:00.000Z",
-      "updatedAt": "2022-09-15T08:00:00.000Z",
+      "createdAt": "2023-05-17T10:48:08.019Z",
+      "updatedAt": "2023-05-17T10:48:08.019Z",
+      "address": []
+    },
+    {
+      "id": "20d73aa9-6db0-4515-9367-1e8938bbb65b",
+      "userName": "hodaya",
+      "email": "asdfgxc@qwe",
+      "phone": "123456789",
+      "password": "123456789",
+      "role": "user",
+      "createdAt": "2023-05-17T10:50:50.856Z",
+      "updatedAt": "2023-05-17T10:50:50.856Z",
+      "address": []
+    },
+    {
+      "id": "d1d6df83-19be-415c-b9e8-08ca43f85a87",
+      "userName": "yoad",
+      "email": "yoad@gmail.com",
+      "phone": "0549108919",
+      "password": "12345678",
+      "role": "user",
+      "createdAt": "2023-05-18T08:07:22.723Z",
+      "updatedAt": "2023-05-18T08:07:22.723Z",
       "address": []
     }
   ],
@@ -75,7 +99,6 @@
   ],
   "products": [
     {
-      "userId": 123,
       "categoryID": "1",
       "id": "1",
       "productName": "Plain Halter Push Up Bikini Swimsuit",
@@ -103,7 +126,6 @@
       "picture": "https://img.ltwebstatic.com/images3_pi/2022/09/15/16632532061ecb0459dd43abd2503951cf2b63d553_thumbnail_405x552.webp"
     },
     {
-      "userId": 123,
       "categoryID": "1",
       "id": "7",
       "productName": "Plain Halter Push Up Bikini Swimsuit",
@@ -131,7 +153,6 @@
       "picture": "https://img.ltwebstatic.com/images3_pi/2022/09/15/16632532061ecb0459dd43abd2503951cf2b63d553_thumbnail_405x552.webp"
     },
     {
-      "userId": 123,
       "categoryID": "1",
       "id": "8",
       "productName": "Plain Halter Push Up Bikini Swimsuit",
@@ -159,7 +180,6 @@
       "picture": "https://img.ltwebstatic.com/images3_pi/2022/09/15/16632532061ecb0459dd43abd2503951cf2b63d553_thumbnail_405x552.webp"
     },
     {
-      "userId": 123,
       "categoryID": "1",
       "id": "9",
       "productName": "Plain Halter Push Up Bikini Swimsuit",
@@ -187,7 +207,6 @@
       "picture": "https://img.ltwebstatic.com/images3_pi/2022/09/15/16632532061ecb0459dd43abd2503951cf2b63d553_thumbnail_405x552.webp"
     },
     {
-      "userId": 123,
       "categoryID": "1",
       "id": "10",
       "productName": "Plain Halter Push Up Bikini Swimsuit",
@@ -215,7 +234,6 @@
       "picture": "https://img.ltwebstatic.com/images3_pi/2022/09/15/16632532061ecb0459dd43abd2503951cf2b63d553_thumbnail_405x552.webp"
     },
     {
-      "userId": 123,
       "categoryID": "1",
       "id": "11",
       "productName": "Plain Halter Push Up Bikini Swimsuit",
@@ -243,7 +261,6 @@
       "picture": "https://img.ltwebstatic.com/images3_pi/2022/09/15/16632532061ecb0459dd43abd2503951cf2b63d553_thumbnail_405x552.webp"
     },
     {
-      "userId": 123,
       "categoryID": "2",
       "id": "2",
       "productName": "Plain Halter Push Up Bikini Swimsuit",
@@ -272,7 +289,6 @@
       "picture": "https://img.ltwebstatic.com/images3_pi/2022/10/19/16661634745d99b7ef5110f554ed1e41fe4d1c1a0f_thumbnail_900x.webp"
     },
     {
-      "userId": 123,
       "categoryID": "2",
       "id": "3",
       "productName": "Dandelion Print Drop Shoulder Sweatshirt",
@@ -303,7 +319,6 @@
       "picture": "https://img.ltwebstatic.com/images3_pi/2022/10/15/1665763244d3c49412b6c8f128ba2411d393d86d69_thumbnail_900x.webp"
     },
     {
-      "userId": 123,
       "categoryID": "2",
       "id": "4",
       "productName": "Solid Thermal Lined Sweatshirt",
@@ -334,7 +349,6 @@
       "picture": "https://img.ltwebstatic.com/images3_pi/2022/11/01/1667287212a336aab19b1940ef6cc7d76e6a6409b3_thumbnail_900x.webp"
     },
     {
-      "userId": 123,
       "categoryID": "1",
       "id": "5",
       "productName": "Plain Halter Push Up Bikini Swimsuit",
@@ -355,7 +369,6 @@
       "picture": "https://img.ltwebstatic.com/images3_pi/2022/09/07/166254378591358beb009e33e1f9cdf754630fa9e9_thumbnail_405x552.webp"
     },
     {
-      "userId": 123,
       "categoryID": "1",
       "id": "16",
       "productName": "Plain Halter Push Up Bikini Swimsuit",
@@ -376,7 +389,6 @@
       "picture": "https://img.ltwebstatic.com/images3_pi/2022/09/07/166254378591358beb009e33e1f9cdf754630fa9e9_thumbnail_405x552.webp"
     },
     {
-      "userId": 123,
       "categoryID": "1",
       "id": "6",
       "productName": "Hollow Out Detail Kimono",
@@ -408,7 +420,6 @@
       "picture": "https://img.ltwebstatic.com/images3_pi/2022/05/23/16532696012e39ba9d6ce2d081204a2dfb0f471162_thumbnail_405x552.webp"
     },
     {
-      "userId": 123,
       "categoryID": "1",
       "id": "17",
       "productName": "Hollow Out Detail Kimono",
@@ -440,7 +451,6 @@
       "picture": "https://img.ltwebstatic.com/images3_pi/2022/05/23/16532696012e39ba9d6ce2d081204a2dfb0f471162_thumbnail_405x552.webp"
     },
     {
-      "userId": 123,
       "categoryID": "2",
       "id": "18",
       "productName": "Hollow Out Detail Kimono",
@@ -468,7 +478,6 @@
       "picture": "https://img.ltwebstatic.com/images3_pi/2022/10/25/1666675423725ff2ac578c2f505ca12a40f13dac6d_thumbnail_900x.webp"
     },
     {
-      "userId": 123,
       "categoryID": "2",
       "id": "19",
       "productName": "Allover Heart Print Drop Shoulder Sweatshirt",
@@ -501,7 +510,6 @@
       "picture": "https://img.ltwebstatic.com/images3_pi/2023/01/28/16748827074c9e2fe9e0846b8c39347fa3d2ef1ab1_thumbnail_900x.webp"
     },
     {
-      "userId": 123,
       "categoryID": "2",
       "id": "20",
       "productName": "EMERY ROSE Waffle Knit Drop Shoulder Pullover",
@@ -537,13 +545,27 @@
   ],
   "wishList": [
     {
-      "id": "7d8c0f6d-8b0b-4375-89c3-962ebd0f11a6",
-      "productID": "1"
+      "id": "1b51566a-6a16-4621-9b7d-ea1bece87035",
+      "userID": "d1d6df83-19be-415c-b9e8-08ca43f85a87",
+      "productID": "7",
+      "size": "xs"
     },
     {
-      "id": "3f6eb9ca-5ba5-47db-aba6-c56effa483b6",
-      "productID": "4"
+      "id": "60002025-2830-4937-ab66-9254ddd3ece1",
+      "userID": "d1d6df83-19be-415c-b9e8-08ca43f85a87",
+      "productID": "8",
+      "size": "xs"
     }
   ],
-  "shoppingCart": []
+  "shoppingCart": [
+    {
+      "id": "8259238c-bb82-47e4-976c-5c0d2c24465c",
+      "userID": "d1d6df83-19be-415c-b9e8-08ca43f85a87",
+      "productID": "1",
+      "color": "",
+      "size": "xs",
+      "quantity": 2,
+      "isChecked": false
+    }
+  ]
 }

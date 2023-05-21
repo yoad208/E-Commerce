@@ -1,10 +1,6 @@
 import {useToast} from "@chakra-ui/react";
-import {createContext, FC} from "react";
 
-export const toastsMessages = createContext({} as any)
-
-export const ToastsMessagesProvider: FC<any> = ({children}) => {
-
+export const useToastMessages = () => {
     const toast = useToast()
 
     const ErrorToast = (message : string) => {
@@ -12,8 +8,8 @@ export const ToastsMessagesProvider: FC<any> = ({children}) => {
             title: 'Error.',
             description: message,
             status: 'error',
-            duration: 9000,
-            position: 'bottom-left',
+            duration: 3000,
+            position: 'top-left',
             isClosable: true,
         })
     }
@@ -23,16 +19,14 @@ export const ToastsMessagesProvider: FC<any> = ({children}) => {
             title: 'Success.',
             description: message,
             status: 'success',
-            duration: 9000,
-            position: 'bottom-left',
+            duration: 3000,
+            position: 'top-left',
             isClosable: true,
         })
     }
 
-    return <toastsMessages.Provider value={{
+    return {
         ErrorToast,
         SuccessToast
-    }}>
-        {children}
-        </toastsMessages.Provider>
+    }
 }

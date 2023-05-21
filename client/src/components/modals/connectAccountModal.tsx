@@ -35,18 +35,11 @@ export const ConnectAccountModal: FC = () => {
                     </ModalCloseButton>
                 </ModalHeader>
                 <ModalBody>
-                    {haveAccount ? <LoginForm/> : <RegisterForm/>}
+                    {haveAccount
+                        ? <LoginForm setHaveAccount={setHaveAccount}/>
+                        : <RegisterForm setHaveAccount={setHaveAccount}/>
+                    }
                 </ModalBody>
-                <ModalFooter justifyContent={'left'} color={'#f17777'}>
-                    <Text cursor='pointer' onClick={() =>
-                        setHaveAccount(!haveAccount)}>
-                        {
-                            haveAccount
-                                ? 'You don`t have an account yet?'
-                                : 'already have an account?'
-                        }
-                    </Text>
-                </ModalFooter>
             </ModalContent>
         </Modal>
     </>

@@ -1,10 +1,9 @@
 import baseUrl from "./baseUrl";
 import {IWishListItem} from "../interfaces/IWishList.interface";
-import {ErrorInfo} from "react";
 
 
-export const getWishList = async (): Promise<IWishListItem[]> => {
-    const response = await baseUrl.get("/wishlist");
+export const getWishList = async (userID: string): Promise<IWishListItem[]> => {
+    const response = await baseUrl.get("/wishlist?userID=" + userID);
     return response.data
 }
 

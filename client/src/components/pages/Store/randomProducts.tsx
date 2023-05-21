@@ -34,13 +34,13 @@ export const RandomProducts: FC<BoxProps> = ({...rest}) => {
         <Divider/>
         <Wrap>
             {randomProducts.map(item => {
-                return <WrapItem key={item.id}>
+                return <WrapItem key={item?.id}>
                     <HStack align={"flex-start"}>
-                        <Image maxW={'4.5em'} objectFit={"cover"} src={item.picture}/>
+                        <Image maxW={'4.5em'} objectFit={"cover"} src={item?.picture}/>
                         <Stack>
                             <Text fontSize={"xs"} fontWeight={"medium"}
-                                  as={"span"}>{slicingFormat(item.productName, 0, 30)}</Text>
-                            <Text fontWeight={"bold"} as={"span"}>{formatCurrency(item.price)}</Text>
+                                  as={"span"}>{slicingFormat(item?.productName, 0, 30)}</Text>
+                            <Text fontWeight={"bold"} as={"span"}>{formatCurrency(item?.price)}</Text>
                         </Stack>
                     </HStack>
                 </WrapItem>

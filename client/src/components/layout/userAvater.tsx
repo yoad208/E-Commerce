@@ -2,8 +2,10 @@ import React, {FC} from 'react';
 import {Avatar, Menu, MenuButton, MenuList, MenuItem} from "@chakra-ui/react";
 import {ConnectAccountModal} from "../modals/connectAccountModal";
 import {Logout} from "./logout";
+import {useSignOut} from "react-auth-kit";
 
 export const UserAvatar: FC = () => {
+    const signOut = useSignOut()
     return <Menu>
         <MenuButton>
             <Avatar size='xs' src='https://bit.ly/broken-link'/>
@@ -13,7 +15,7 @@ export const UserAvatar: FC = () => {
                 <ConnectAccountModal/>
             </MenuItem>
             <MenuItem>
-                <Logout/>
+                <Logout w={"full"} cursor='pointer' onClick={signOut}/>
             </MenuItem>
         </MenuList>
     </Menu>

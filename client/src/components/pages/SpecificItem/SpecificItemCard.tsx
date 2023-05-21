@@ -9,6 +9,9 @@ import {FavouritesButton} from "../../customComps/favouritesButton";
 import {useShoppingCart} from "../../../hooks/useShoppingCart";
 import {v4 as uuidV4} from "uuid";
 import {useWishList} from "../../../hooks/useWishList";
+import {isAuthenticated} from "react-auth-kit/dist/utils/utils";
+import {useToastMessages} from "../../../hooks/useToastMessages";
+import {useAuthUser, useIsAuthenticated} from "react-auth-kit";
 
 interface specificProductCard extends CardProps {
     product: ISpecificProduct
@@ -20,11 +23,16 @@ export const SpecificItemCard: FC<specificProductCard> = ({product, ...rest}) =>
     const [selectedSize, setSelectedSize] = useState(product?.sizes[0] || '')
     const {addToCart} = useShoppingCart()
     const {wishListData, addToWishList, deleteFromWishList} = useWishList()
+    const {ErrorToast} = useToastMessages()
+    const isAuthenticated = useIsAuthenticated()
+    const auth = useAuthUser()
 
     const handleAddToCart = () => {
+        if (!isAuthenticated()) return ErrorToast('You must be logged in to add to cart')
         if (selectedColor !== undefined && selectedSize !== undefined) {
             addToCart({
                 id: uuidV4(),
+                userID: auth()?.id,
                 productID: product?.id,
                 color: selectedColor,
                 size: selectedSize,
@@ -35,10 +43,12 @@ export const SpecificItemCard: FC<specificProductCard> = ({product, ...rest}) =>
     }
 
     const handleFavorites = () => {
+        if (!isAuthenticated()) return ErrorToast('You must be logged in to add to favorites')
         let existingItem = wishListData?.find(i => i.productID === product.id)
         if (existingItem) return deleteFromWishList(existingItem.id)
         return addToWishList({
             id: uuidV4(),
+            userID: auth()?.id,
             productID: product.id,
             color: product.colors[0],
             size: product.sizes[0]

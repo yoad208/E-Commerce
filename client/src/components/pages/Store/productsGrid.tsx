@@ -1,6 +1,6 @@
 import {SimpleGrid, SimpleGridProps} from "@chakra-ui/react";
 import {ProductCard} from "../../customComps/productCard";
-import React, {FC, useContext, useEffect, useMemo, useState} from "react";
+import React, {FC, useContext} from "react";
 import {paginationProvider} from "../../../context/paginationProvider";
 import {IProducts} from "../../../interfaces/Iproducts.interface";
 

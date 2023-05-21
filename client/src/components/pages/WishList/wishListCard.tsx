@@ -11,6 +11,7 @@ import {useShoppingCart} from "../../../hooks/useShoppingCart";
 import {useWishList} from "../../../hooks/useWishList";
 import {useNavigate} from "react-router-dom";
 import {v4 as uuidV4} from "uuid";
+import {useAuthUser} from "react-auth-kit";
 
 export const WishListCard: FC<IWishListCard> = ({item, gridTemplate}) => {
 
@@ -22,6 +23,7 @@ export const WishListCard: FC<IWishListCard> = ({item, gridTemplate}) => {
     const [isHovered, setIsHovered] = useState<boolean>(false)
     const [loading, setLoading] = useState<boolean>(false)
     const currentItem = productsArray?.find((i: IProducts) => (i.id === item.productID))
+    const auth = useAuthUser()
 
     const navigateToCurrentPage = () => navigate(`/store/item/${currentItem.id}`)
     const handleDelete = () => {
@@ -36,6 +38,7 @@ export const WishListCard: FC<IWishListCard> = ({item, gridTemplate}) => {
         setTimeout(() => {
             addToCart({
                 id: uuidV4(),
+                userID: auth()?.id,
                 productID: currentItem.id,
                 color: currentItem?.colors[0],
                 size: currentItem.sizes[0],

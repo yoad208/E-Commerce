@@ -1,8 +1,8 @@
 import baseUrl from "./baseUrl";
 import {IShoppingCartItem} from "../interfaces/IShoppingCartItem.interface";
 
-export const getSoppingCartItems = async (): Promise<IShoppingCartItem[]> => {
-    const response = await baseUrl.get('/shoppingCart');
+export const getSoppingCartItems = async (userID: string): Promise<IShoppingCartItem[]> => {
+    const response = await baseUrl.get('/shoppingCart?userID=' + userID);
     return response.data
 }
 

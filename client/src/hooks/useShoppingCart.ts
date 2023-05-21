@@ -6,19 +6,20 @@ import {
     updateSoppingCartItems
 } from "../api/shoppingCartApi";
 import {IShoppingCartItem} from "../interfaces/IShoppingCartItem.interface";
+import {useAuthUser} from "react-auth-kit";
 
 export const useShoppingCart = () => {
 
     const queryClient = useQueryClient()
-
+    const auth = useAuthUser()
     const {
         data: shoppingCartData,
         isLoading,
         isError,
         error
     } = useQuery({
-        queryKey: ['shoppingCart'],
-        queryFn: getSoppingCartItems,
+        queryKey: ['shoppingCart', {userID: auth()?.id}],
+        queryFn:() => getSoppingCartItems(auth()?.id),
         refetchOnWindowFocus: false,
         staleTime: 1000 * 60 * 10,
         enabled: true

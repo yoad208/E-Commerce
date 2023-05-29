@@ -14,16 +14,12 @@ import {EmptyWishListMessage} from "./emptyWishListMessage";
 
 export const WishList = () => {
 
-    const {query} = useQueryString()
-    const {sortBy} = useSortBy()
     const {wishListData, error, isError, isLoading} = useWishList()
     const [gridTemplate, setGridTemplate] = useState<number>(5)
 
 
     if (isError) return <>{JSON.stringify(error)}</>
     if (isLoading) return <Spinner/>
-
-    sortBy(wishListData as IWishListItem[], query.get('sortBy') as string)
 
     return <>
         <PageBreadcrumb title={'Favorites'}/>

@@ -8,8 +8,8 @@ import {
     ModalCloseButton,
     Text, ModalFooter
 } from '@chakra-ui/react'
-import {RegisterForm} from "./registerForm";
-import {LoginForm} from "./loginForm";
+import {RegisterForm} from "../layout/registerForm";
+import {LoginForm} from "../layout/loginForm";
 import {Icon} from "@chakra-ui/icons";
 import {AiOutlineClose} from "react-icons/all";
 
@@ -22,7 +22,7 @@ export const ConnectAccountModal: FC<Props> = ({btnText}) => {
     const [haveAccount, setHaveAccount] = useState<boolean>(false)
 
     return <>
-        <Text cursor='pointer' width={'100%'} onClick={onOpen}>{btnText}</Text>
+        <Text cursor='pointer' width={'100%'} onClick={onOpen} children={btnText} />
         <Modal isOpen={isOpen} onClose={onClose}>
             <ModalOverlay/>
             <ModalContent m={'auto'} p={0} maxW={'550px'}>

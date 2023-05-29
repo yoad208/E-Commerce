@@ -82,9 +82,7 @@ export const useShoppingCart = () => {
             return queryClient.setQueryData(['shoppingCart'], items)
         },
         onSuccess: () => {
-            return queryClient.invalidateQueries(['shoppingCart'], {
-                exact: true
-            })
+            return queryClient.invalidateQueries(['shoppingCart'])
         }
     })
 

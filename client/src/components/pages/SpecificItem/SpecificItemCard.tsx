@@ -1,4 +1,4 @@
-import {FC, useState} from 'react';
+import {FC, memo, useCallback, useMemo, useState} from 'react';
 import {ISpecificProduct} from "../../../interfaces/IspecificProduct.interface";
 import {Box, Button, Card, CardBody, CardHeader, CardProps, HStack, Image, Stack, Text} from "@chakra-ui/react";
 import {formatCurrency} from "../../../utilities/formatCurrency";
@@ -19,8 +19,8 @@ interface specificProductCard extends CardProps {
 
 export const SpecificItemCard: FC<specificProductCard> = ({product, ...rest}) => {
 
-    const [selectedColor, setSelectedColor] = useState( product.colors[0] || '')
-    const [selectedSize, setSelectedSize] = useState(product.sizes[0] ||'')
+    const [selectedColor, setSelectedColor] = useState(product.colors[0] || '')
+    const [selectedSize, setSelectedSize] = useState(product.sizes[0] || '')
     const {addToCart} = useShoppingCart()
     const {wishListData, addToWishList, deleteFromWishList} = useWishList()
     const {ErrorToast} = useToastMessages()
@@ -29,17 +29,19 @@ export const SpecificItemCard: FC<specificProductCard> = ({product, ...rest}) =>
 
     const handleAddToCart = () => {
         if (!isAuthenticated()) return ErrorToast('You must be logged in to add to cart')
-        if (selectedColor !== undefined && selectedSize !== undefined) {
-            addToCart({
-                id: uuidV4(),
-                userID: auth()?.id,
-                productID: product?.id,
-                color: selectedColor,
-                size: selectedSize,
-                quantity: 1,
-                isChecked: false
-            })
+
+        const cartItem = {
+            id: uuidV4(),
+            userID: auth()?.id,
+            productID: product?.id,
+            color: selectedColor,
+            size: selectedSize,
+            quantity: 1,
+            isChecked: false
         }
+
+        if (selectedColor === '' || selectedSize === '') return ErrorToast('Please select color and size')
+        addToCart(cartItem)
     }
 
     const handleFavorites = () => {
@@ -90,7 +92,7 @@ export const SpecificItemCard: FC<specificProductCard> = ({product, ...rest}) =>
                             shadow={"md"}
                             _hover={{shadow: "inner"}}
                             cursor={'pointer'}
-                            onClick={() => setSelectedColor(color)}
+                            onClick={() => setSelectedColor(color === selectedColor ? '' : color)}
                         >
                             <Box
                                 bg={color}
@@ -116,7 +118,7 @@ export const SpecificItemCard: FC<specificProductCard> = ({product, ...rest}) =>
                             _hover={{shadow: "inner"}}
                             textAlign={'center'}
                             cursor={'pointer'}
-                            onClick={() => setSelectedSize(size)}
+                            onClick={() => setSelectedSize(size === selectedSize ? '' : size)}
                         >
                             <Text
                                 fontSize={14}

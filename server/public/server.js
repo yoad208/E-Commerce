@@ -23,7 +23,7 @@ server.post("/login", (req, res) => {
 
     const expiresIn = 3600
     const token = jwt.sign(userData, ACCESS_TOKEN_SECRET, {expiresIn})
-    res.json({message: "login successfully", userId: userInfo.id, token, expiresIn})
+    res.json({message: "login successfully", user: userInfo, token, expiresIn})
 })
 
 server.put('/shoppingCart/all', async (req, res) => {

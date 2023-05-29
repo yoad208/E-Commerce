@@ -3,7 +3,7 @@ import {
     FormControl,
     Input,
     Button,
-    Heading, Box, FormLabel, Text
+    Heading, Box, FormLabel, Text, Stack, HStack
 } from '@chakra-ui/react'
 import {IUser} from "../../interfaces/IUser.interface";
 import {useFormik} from 'formik'
@@ -11,6 +11,7 @@ import {v4 as uuidV4} from "uuid";
 import {registerSchema} from "../../schemes/userScheme";
 import {ErrorMassage} from "../customComps/errorMassage";
 import {useLogin} from "../../hooks/useLogin";
+import {GoogleAuth} from "./googleAuth";
 
 
 export type TForm = {
@@ -21,6 +22,7 @@ export const RegisterForm: FC<TForm> = ({setHaveAccount}) => {
     const {addUser} = useLogin()
     const initialValues: IUser = {
         id: uuidV4(),
+        provider: "gmail",
         userName: "",
         email: "",
         phone: "",
@@ -96,15 +98,21 @@ export const RegisterForm: FC<TForm> = ({setHaveAccount}) => {
                 {errors.password && touched.password && <ErrorMassage children={errors.password}/>}
             </FormControl>
 
+
+            <FormControl mt={5}>
+                <Button colorScheme='blue' w='100%' type='submit'>Register</Button>
+            </FormControl>
+        </form>
+        <Stack gap={2}>
             <FormControl>
                 <Text cursor='pointer' onClick={() => setHaveAccount(true)}>
                     already have an account?
                 </Text>
             </FormControl>
 
-            <FormControl mt={5}>
-                <Button colorScheme='blue' w='100%' type='submit'>Sign-in</Button>
-            </FormControl>
-        </form>
+            <HStack gap={2}>
+                <GoogleAuth/>
+            </HStack>
+        </Stack>
     </FormControl>
 }

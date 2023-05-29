@@ -11,5 +11,8 @@
     "serve": "cd server && npm run server"
   },
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "reactjs-social-login": "^2.6.2"
+  }
 }

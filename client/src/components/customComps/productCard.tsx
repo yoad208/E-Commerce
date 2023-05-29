@@ -45,6 +45,7 @@ export const ProductCard: FC<cardProps> = ({product, ...rest}) => {
         if (!isAuthenticated()) return ErrorToast('You must be logged in to add to favorites')
         let existingItem = wishListData?.find(i => i.productID === product.id)
         if (existingItem) return deleteFromWishList(existingItem.id)
+        console.log(auth())
         addToWishList({
             id: uuidV4(),
             userID: auth()?.id,

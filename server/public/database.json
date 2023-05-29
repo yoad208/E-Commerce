@@ -9,36 +9,27 @@
   },
   "users": [
     {
-      "id": "3ee66a86-fea9-45ff-b574-7957e8be4240",
-      "userName": "yoad",
-      "email": "asdfg@asdfg",
-      "phone": "123456789",
-      "password": "12345678",
+      "id": "d517b3fd-a423-4022-8be4-ea78b7d8dee7",
+      "provider": "google",
+      "userName": "יועד עזאני",
+      "email": "yoad208@gmail.com",
+      "phone": "",
+      "password": "",
       "role": "user",
-      "createdAt": "2023-05-17T10:48:08.019Z",
-      "updatedAt": "2023-05-17T10:48:08.019Z",
+      "createdAt": "2023-05-29T11:56:55.724Z",
+      "updatedAt": "2023-05-29T11:56:55.724Z",
       "address": []
     },
     {
-      "id": "20d73aa9-6db0-4515-9367-1e8938bbb65b",
-      "userName": "hodaya",
-      "email": "asdfgxc@qwe",
-      "phone": "123456789",
-      "password": "123456789",
-      "role": "user",
-      "createdAt": "2023-05-17T10:50:50.856Z",
-      "updatedAt": "2023-05-17T10:50:50.856Z",
-      "address": []
-    },
-    {
-      "id": "d1d6df83-19be-415c-b9e8-08ca43f85a87",
+      "id": "5700f04e-dbc7-4109-8c8e-cebfa454e3b2",
+      "provider": "gmail",
       "userName": "yoad",
       "email": "yoad@gmail.com",
       "phone": "0549108919",
       "password": "12345678",
       "role": "user",
-      "createdAt": "2023-05-18T08:07:22.723Z",
-      "updatedAt": "2023-05-18T08:07:22.723Z",
+      "createdAt": "2023-05-29T11:57:34.298Z",
+      "updatedAt": "2023-05-29T11:57:34.298Z",
       "address": []
     }
   ],
@@ -545,33 +536,59 @@
   ],
   "wishList": [
     {
-      "id": "1b51566a-6a16-4621-9b7d-ea1bece87035",
-      "userID": "d1d6df83-19be-415c-b9e8-08ca43f85a87",
+      "id": "b609670b-bea8-458b-8c2f-6d4b0d5a416d",
+      "userID": "d517b3fd-a423-4022-8be4-ea78b7d8dee7",
       "productID": "7",
       "size": "xs"
     },
     {
-      "id": "60002025-2830-4937-ab66-9254ddd3ece1",
-      "userID": "d1d6df83-19be-415c-b9e8-08ca43f85a87",
-      "productID": "8",
+      "id": "adb0145b-06ea-4fd1-9cff-c929b0b37208",
+      "userID": "5700f04e-dbc7-4109-8c8e-cebfa454e3b2",
+      "productID": "1",
       "size": "xs"
     },
     {
-      "id": "a5300937-da07-4686-b312-854d4e9d09b6",
-      "userID": "d1d6df83-19be-415c-b9e8-08ca43f85a87",
-      "productID": "1",
+      "id": "09876433-ed46-4a85-bc50-4dc923127825",
+      "userID": "5700f04e-dbc7-4109-8c8e-cebfa454e3b2",
+      "productID": "7",
+      "size": "xs"
+    },
+    {
+      "id": "902d92d0-db67-4087-8dfc-31d3de9fa15c",
+      "userID": "d517b3fd-a423-4022-8be4-ea78b7d8dee7",
+      "productID": "2",
+      "color": "white",
+      "size": "s"
+    },
+    {
+      "id": "7161ed7a-2b2c-4f19-b24d-615549d79cb1",
+      "userID": "d517b3fd-a423-4022-8be4-ea78b7d8dee7",
+      "productID": "5"
+    },
+    {
+      "id": "a4715bb9-3972-4385-a2c2-3e764d4a9114",
+      "userID": "d517b3fd-a423-4022-8be4-ea78b7d8dee7",
+      "productID": "4",
+      "color": "black",
       "size": "xs"
     }
   ],
   "shoppingCart": [
     {
-      "id": "207fc07a-2ee0-4d1f-bfb2-e672970b0c7b",
-      "userID": "d1d6df83-19be-415c-b9e8-08ca43f85a87",
-      "productID": "1",
-      "color": "",
+      "id": "1aaa9be5-387d-4970-af7a-f5aa7d098a50",
+      "userID": "d517b3fd-a423-4022-8be4-ea78b7d8dee7",
+      "productID": "7",
       "size": "xs",
       "quantity": 1,
-      "isChecked": false
+      "isChecked": true
+    },
+    {
+      "id": "f2f32497-e8f2-4344-8681-2229d36d782a",
+      "userID": "d517b3fd-a423-4022-8be4-ea78b7d8dee7",
+      "productID": "1",
+      "size": "xs",
+      "quantity": 1,
+      "isChecked": true
     }
   ]
 }

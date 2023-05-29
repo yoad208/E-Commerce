@@ -12,6 +12,7 @@ interface IAddress {
 
 export interface IUser {
     id: string
+    provider: string
     userName: string
     email: string
     phone: string

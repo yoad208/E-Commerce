@@ -1,12 +1,12 @@
 import {useMutation, useQuery, useQueryClient} from "@tanstack/react-query";
 import {deleteUser, getUsers, postUser, updateUser} from "../api/usersApi";
 import {IUser} from "../interfaces/IUser.interface";
-
+import {useGenerateToken} from "../hooks/useGenerateToken";
 
 export const useLogin = () => {
 
     const queryClient = useQueryClient()
-
+    const {generateToken} = useGenerateToken()
     const {
         data: usersData,
         isError,
@@ -22,8 +22,11 @@ export const useLogin = () => {
     const {mutate: addUser} = useMutation({
         mutationFn: (user: IUser) => {
             let userExist = usersData?.find(u => u.email === user.email);
-            if (!userExist) return postUser(user)
-            return Promise.reject("User already exists")
+            if (userExist) return generateToken({email: userExist.email})
+            if (!userExist && user.provider === "google") return postUser(user).then(res => {
+                generateToken({email: res.email}).then()
+            })
+            return postUser(user)
         },
         onSuccess: () => {
             return queryClient.invalidateQueries(['users'])

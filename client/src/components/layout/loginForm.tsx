@@ -1,37 +1,32 @@
 import {FC} from "react";
-import {Button, FormControl, FormLabel, Heading, Input, Text} from "@chakra-ui/react";
+import {Button, FormControl, FormLabel, Heading, HStack, Input, Spacer, Text} from "@chakra-ui/react";
 import {TForm} from "./registerForm";
 import {useFormik} from "formik";
 import {ErrorMassage} from "../customComps/errorMassage";
 import {loginSchema} from "../../schemes/loginSchema";
 import {useLogin} from "../../hooks/useLogin";
-import {useAuthUser, useSignIn} from "react-auth-kit";
+import {useSignIn} from "react-auth-kit";
 import axios from "axios";
+import {useGenerateToken} from "../../hooks/useGenerateToken";
 
 
 export const LoginForm: FC<TForm> = ({setHaveAccount}) => {
 
-    const signIn = useSignIn()
-    const auth = useAuthUser()
+    const {generateToken} = useGenerateToken()
     const {usersData} = useLogin()
     const initialValues = {
         email: "",
         password: ""
     }
-    const onSubmit = async () => {
+    const onSubmit = () => {
         if (usersData?.length === 0) return alert('User not found')
         if (!usersData?.find(u => u.email === values.email && u.password === values.password)) {
             return alert('email or password is incorrect')
         }
         try {
-            const res = await axios.post('http://localhost:3000/login', {email: values.email})
-            signIn({
-                token: res.data.token,
-                expiresIn: res.data.expiresIn,
-                tokenType: "Bearer",
-                authState: {id: res.data.userId, email: values.email}
+            generateToken({email: values.email}).then(() => {
+                resetForm()
             })
-            resetForm()
         } catch (e) {
             console.log(e)
         }
@@ -74,15 +69,19 @@ export const LoginForm: FC<TForm> = ({setHaveAccount}) => {
                 {errors.password && touched.password && <ErrorMassage children={errors.password}/>}
             </FormControl>
 
-            <FormControl>
-                <Text cursor='pointer' onClick={() => setHaveAccount(false)}>
-                    You don`t have an account yet?
-                </Text>
-            </FormControl>
-
             <FormControl my={5}>
                 <Button colorScheme='blue' w='100%' type='submit'>Sign-in</Button>
             </FormControl>
         </form>
+
+        <HStack>
+            <Text cursor='pointer' onClick={() => setHaveAccount(false)}>
+                You don`t have an account yet?
+            </Text>
+            <Spacer/>
+            <Text cursor='pointer'>
+                Forgot your password?
+            </Text>
+        </HStack>
     </FormControl>;
 }

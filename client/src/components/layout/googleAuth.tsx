@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {FC} from 'react';
 import {Button} from "@chakra-ui/react";
 import {Icon} from "@chakra-ui/icons";
 import {FcGoogle} from "react-icons/all";
@@ -7,13 +7,13 @@ import axios from "axios";
 import {useLogin} from "../../hooks/useLogin";
 import {v4 as uuidV4} from "uuid";
 import {IUser} from "../../interfaces/IUser.interface";
-import {useGenerateToken} from "../../hooks/useGenerateToken";
+import {useToastMessages} from "../../hooks/useToastMessages";
 
-export const GoogleAuth = () => {
+export const GoogleAuth: FC<{onClose?: () => void}> = ({onClose}) => {
 
-    const {addUser, usersData} = useLogin()
+    const {register, usersData} = useLogin()
+    const {SuccessToast, ErrorToast} = useToastMessages()
 
-    const {generateToken} = useGenerateToken()
     const initialValues: IUser = {
         id: uuidV4(),
         provider: "google",
@@ -34,14 +34,14 @@ export const GoogleAuth = () => {
                     Authorization: `Bearer ${accessToken.access_token}`
                 }
             })
-        console.log(res.data)
         initialValues.email = res.data.email
         initialValues.userName = res.data.name
-        addUser(initialValues)
+        register(initialValues)
+        return SuccessToast("Logged in successfully")
     }
 
     const onError = (error: any) => {
-        console.log(error.message);
+        return ErrorToast(error.message)
     }
 
 
@@ -51,7 +51,10 @@ export const GoogleAuth = () => {
         size={'sm'}
         colorScheme={'blue'}
         variant={'outline'}
-        onClick={() => login()}
+        onClick={() => {
+            login()
+            onClose?.()
+        }}
         leftIcon={<Icon as={FcGoogle} fontSize={26}/>}
     >
         Continue with google

@@ -2,11 +2,14 @@ import {useMutation, useQuery, useQueryClient} from "@tanstack/react-query";
 import {deleteUser, getUsers, postUser, updateUser} from "../api/usersApi";
 import {IUser} from "../interfaces/IUser.interface";
 import {useGenerateToken} from "../hooks/useGenerateToken";
+import {LoginStatus, validateLogin} from "../utilities/loginValidation";
+import {useToastMessages} from "./useToastMessages";
 
 export const useLogin = () => {
 
     const queryClient = useQueryClient()
     const {generateToken} = useGenerateToken()
+    const {ErrorToast, SuccessToast} = useToastMessages()
     const {
         data: usersData,
         isError,
@@ -19,13 +22,32 @@ export const useLogin = () => {
         staleTime: 1000 * 60 * 10
     })
 
-    const {mutate: addUser} = useMutation({
+    const {mutate: login} = useMutation({
+        mutationFn: (values: { email: string, password: string }): any => {
+            const validated = validateLogin((usersData || []), values as IUser)
+            if (validated === LoginStatus.Failed) {
+                return ErrorToast("Invalid email or password")
+            }
+            generateToken({email: values.email}).then()
+            return SuccessToast("Logged in successfully")
+        },
+        onSuccess: () => {
+            return queryClient.invalidateQueries(['users'])
+        }
+    })
+
+    const {mutate: register} = useMutation({
         mutationFn: (user: IUser) => {
             let userExist = usersData?.find(u => u.email === user.email);
-            if (userExist) return generateToken({email: userExist.email})
-            if (!userExist && user.provider === "google") return postUser(user).then(res => {
-                generateToken({email: res.email}).then()
-            })
+
+            if (!userExist && user.provider === "google") {
+                return postUser(user).then(res => {
+                    generateToken({email: res.email}).then()
+                })
+            } else if (userExist && user.provider === "google") {
+                return generateToken({email: userExist.email})
+            }
+
             return postUser(user)
         },
         onSuccess: () => {
@@ -58,7 +80,8 @@ export const useLogin = () => {
         isError,
         error,
         isLoading,
-        addUser,
+        login,
+        register,
         updateSpecificUser,
         deleteSpecificUser
     }

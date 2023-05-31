@@ -9,27 +9,27 @@
   },
   "users": [
     {
-      "id": "d517b3fd-a423-4022-8be4-ea78b7d8dee7",
-      "provider": "google",
-      "userName": "יועד עזאני",
-      "email": "yoad208@gmail.com",
-      "phone": "",
-      "password": "",
-      "role": "user",
-      "createdAt": "2023-05-29T11:56:55.724Z",
-      "updatedAt": "2023-05-29T11:56:55.724Z",
-      "address": []
-    },
-    {
-      "id": "5700f04e-dbc7-4109-8c8e-cebfa454e3b2",
+      "id": "4ed379f0-f406-493c-aaed-e9c7ad45ee84",
       "provider": "gmail",
       "userName": "yoad",
-      "email": "yoad@gmail.com",
+      "email": "yoad208@gmail.com",
       "phone": "0549108919",
       "password": "12345678",
       "role": "user",
-      "createdAt": "2023-05-29T11:57:34.298Z",
-      "updatedAt": "2023-05-29T11:57:34.298Z",
+      "createdAt": "2023-05-31T16:20:56.183Z",
+      "updatedAt": "2023-05-31T16:20:56.183Z",
+      "address": []
+    },
+    {
+      "id": "7b64def9-4559-4a6a-8d72-28d7bfb4b5d7",
+      "provider": "google",
+      "userName": "Yoad Azani",
+      "email": "yoad208.ebay@gmail.com",
+      "phone": "",
+      "password": "",
+      "role": "user",
+      "createdAt": "2023-05-31T17:08:13.817Z",
+      "updatedAt": "2023-05-31T17:08:13.817Z",
       "address": []
     }
   ],
@@ -536,59 +536,23 @@
   ],
   "wishList": [
     {
-      "id": "b609670b-bea8-458b-8c2f-6d4b0d5a416d",
-      "userID": "d517b3fd-a423-4022-8be4-ea78b7d8dee7",
-      "productID": "7",
+      "id": "4c60f984-c38f-4061-a8de-22b787cc4d97",
+      "userID": "4ed379f0-f406-493c-aaed-e9c7ad45ee84",
+      "productID": "8",
       "size": "xs"
     },
     {
-      "id": "adb0145b-06ea-4fd1-9cff-c929b0b37208",
-      "userID": "5700f04e-dbc7-4109-8c8e-cebfa454e3b2",
-      "productID": "1",
+      "id": "102205ef-23f9-4d9b-b25d-70cf5c6fa7b4",
+      "userID": "4ed379f0-f406-493c-aaed-e9c7ad45ee84",
+      "productID": "9",
       "size": "xs"
     },
     {
-      "id": "09876433-ed46-4a85-bc50-4dc923127825",
-      "userID": "5700f04e-dbc7-4109-8c8e-cebfa454e3b2",
-      "productID": "7",
-      "size": "xs"
-    },
-    {
-      "id": "902d92d0-db67-4087-8dfc-31d3de9fa15c",
-      "userID": "d517b3fd-a423-4022-8be4-ea78b7d8dee7",
-      "productID": "2",
-      "color": "white",
-      "size": "s"
-    },
-    {
-      "id": "7161ed7a-2b2c-4f19-b24d-615549d79cb1",
-      "userID": "d517b3fd-a423-4022-8be4-ea78b7d8dee7",
-      "productID": "5"
-    },
-    {
-      "id": "a4715bb9-3972-4385-a2c2-3e764d4a9114",
-      "userID": "d517b3fd-a423-4022-8be4-ea78b7d8dee7",
-      "productID": "4",
-      "color": "black",
+      "id": "4ef5cd2b-024f-4f6b-9ce1-96c27b271a88",
+      "userID": "7b64def9-4559-4a6a-8d72-28d7bfb4b5d7",
+      "productID": "9",
       "size": "xs"
     }
   ],
-  "shoppingCart": [
-    {
-      "id": "1aaa9be5-387d-4970-af7a-f5aa7d098a50",
-      "userID": "d517b3fd-a423-4022-8be4-ea78b7d8dee7",
-      "productID": "7",
-      "size": "xs",
-      "quantity": 1,
-      "isChecked": true
-    },
-    {
-      "id": "f2f32497-e8f2-4344-8681-2229d36d782a",
-      "userID": "d517b3fd-a423-4022-8be4-ea78b7d8dee7",
-      "productID": "1",
-      "size": "xs",
-      "quantity": 1,
-      "isChecked": true
-    }
-  ]
+  "shoppingCart": []
 }

@@ -12,14 +12,16 @@ import {registerSchema} from "../../schemes/userScheme";
 import {ErrorMassage} from "../customComps/errorMassage";
 import {useLogin} from "../../hooks/useLogin";
 import {GoogleAuth} from "./googleAuth";
+import {shouldThrowError} from "@tanstack/react-query/build/lib/utils";
 
 
 export type TForm = {
     setHaveAccount: Dispatch<boolean>
+    onClose?: () => void
 }
-export const RegisterForm: FC<TForm> = ({setHaveAccount}) => {
+export const RegisterForm: FC<TForm> = ({setHaveAccount, onClose}) => {
 
-    const {addUser} = useLogin()
+    const {register} = useLogin()
     const initialValues: IUser = {
         id: uuidV4(),
         provider: "gmail",
@@ -33,8 +35,9 @@ export const RegisterForm: FC<TForm> = ({setHaveAccount}) => {
         address: []
     }
     const onSubmit = () => {
-        addUser(values)
+        register(values)
         resetForm()
+        setHaveAccount(true)
     }
 
     const {
@@ -111,7 +114,7 @@ export const RegisterForm: FC<TForm> = ({setHaveAccount}) => {
             </FormControl>
 
             <HStack gap={2}>
-                <GoogleAuth/>
+                <GoogleAuth onClose={onClose}/>
             </HStack>
         </Stack>
     </FormControl>

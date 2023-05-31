@@ -38,8 +38,8 @@ export const ConnectAccountModal: FC<Props> = ({btnText}) => {
                 </ModalHeader>
                 <ModalBody>
                     {haveAccount
-                        ? <LoginForm setHaveAccount={setHaveAccount}/>
-                        : <RegisterForm setHaveAccount={setHaveAccount}/>
+                        ? <LoginForm setHaveAccount={setHaveAccount} onClose={onClose}/>
+                        : <RegisterForm setHaveAccount={setHaveAccount} onClose={onClose}/>
                     }
                 </ModalBody>
             </ModalContent>

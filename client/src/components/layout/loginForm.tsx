@@ -10,26 +10,18 @@ import axios from "axios";
 import {useGenerateToken} from "../../hooks/useGenerateToken";
 
 
-export const LoginForm: FC<TForm> = ({setHaveAccount}) => {
+export const LoginForm: FC<TForm> = ({setHaveAccount, onClose}) => {
 
-    const {generateToken} = useGenerateToken()
-    const {usersData} = useLogin()
+    const {login} = useLogin()
     const initialValues = {
         email: "",
         password: ""
     }
     const onSubmit = () => {
-        if (usersData?.length === 0) return alert('User not found')
-        if (!usersData?.find(u => u.email === values.email && u.password === values.password)) {
-            return alert('email or password is incorrect')
-        }
-        try {
-            generateToken({email: values.email}).then(() => {
-                resetForm()
-            })
-        } catch (e) {
-            console.log(e)
-        }
+        login(values)
+        resetForm()
+        onClose?.()
+        setHaveAccount(false)
     }
 
     const {

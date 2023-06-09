@@ -14,8 +14,6 @@ import {EmptyWishListMessage} from "./emptyWishListMessage";
 
 export const WishList = () => {
 
-    const {query} = useQueryString()
-    const {sortBy} = useSortBy()
     const {wishListData, error, isError, isLoading} = useWishList()
     const [gridTemplate, setGridTemplate] = useState<number>(5)
 
@@ -23,16 +21,18 @@ export const WishList = () => {
     if (isError) return <>{JSON.stringify(error)}</>
     if (isLoading) return <Spinner/>
 
-    sortBy(wishListData as IWishListItem[], query.get('sortBy') as string)
-
     return <>
         <PageBreadcrumb title={'Favorites'}/>
         <Container maxW={"container.xl"} px={{base: 2, md: 12}} pt={5} pb={"5rem"}>
-            <Heading fontSize={20} textAlign={'center'} pb={2} children={"My Wish List"}/>
-            <HStack w={'100%'} bg={"white"} justify={'space-between'} boxShadow={"md"} rounded={"md"} p={2}>
-                <SortBy/>
-                <GenerateGridTemplate setGridTemplate={setGridTemplate}/>
-            </HStack>
+            {
+                (wishListData || [])?.length > 0 && <>
+                    <Heading fontSize={20} textAlign={'center'} pb={2} children={"My Wish List"}/>
+                    <HStack w={'100%'} bg={"white"} justify={'space-between'} boxShadow={"md"} rounded={"md"} p={2}>
+                        <SortBy/>
+                        <GenerateGridTemplate setGridTemplate={setGridTemplate}/>
+                    </HStack>
+                </>
+            }
             <Box bg={'white'} w={'100%'} my={3} boxShadow={"md"} rounded={"md"}>
                 {(wishListData || [])?.length > 0 ? <SimpleGrid
                     columns={{

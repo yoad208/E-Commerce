@@ -11,13 +11,14 @@ export const CartItemsHeader: FC<TShoppingCartData> = ({shoppingCartData}) => {
 
     const {updateAllCartItems} = useShoppingCart();
     const handleCheckAll = async (e: ChangeEvent<HTMLInputElement>) => {
-        updateAllCartItems(shoppingCartData.map(item => ({
+        updateAllCartItems(shoppingCartData?.map(item => ({
             ...item,
             isChecked: e.target.checked
         })) as IShoppingCartItem[])
     }
 
-    const allChecked = useMemo(() => shoppingCartData.every(item => item.isChecked
+    const allChecked = useMemo(() =>
+        shoppingCartData?.every(item => item.isChecked
         ), [shoppingCartData])
 
     return <Stack p={2} spacing={2} rounded={'md'} bg={'white'} mb={2}>

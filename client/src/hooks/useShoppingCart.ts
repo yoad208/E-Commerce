@@ -6,19 +6,20 @@ import {
     updateSoppingCartItems
 } from "../api/shoppingCartApi";
 import {IShoppingCartItem} from "../interfaces/IShoppingCartItem.interface";
+import {useAuthUser} from "react-auth-kit";
 
 export const useShoppingCart = () => {
 
     const queryClient = useQueryClient()
-
+    const auth = useAuthUser()
     const {
         data: shoppingCartData,
         isLoading,
         isError,
         error
     } = useQuery({
-        queryKey: ['shoppingCart'],
-        queryFn: getSoppingCartItems,
+        queryKey: ['shoppingCart', {userID: auth()?.id}],
+        queryFn:() => getSoppingCartItems(auth()?.id),
         refetchOnWindowFocus: false,
         staleTime: 1000 * 60 * 10,
         enabled: true
@@ -30,8 +31,9 @@ export const useShoppingCart = () => {
         )
 
     const {mutate: addToCart} = useMutation({
-        mutationFn: (newItem: IShoppingCartItem) => {
-            let item = (shoppingCartData || []).find(currentItem =>
+        mutationFn: (newItem: IShoppingCartItem): Promise<IShoppingCartItem | undefined> => {
+
+            let item: IShoppingCartItem | undefined = (shoppingCartData || []).find(currentItem =>
                 currentItem.productID === newItem.productID &&
                 currentItem.color === newItem.color &&
                 currentItem.size === newItem.size
@@ -55,8 +57,8 @@ export const useShoppingCart = () => {
     })
 
     const {mutate: updateCartItem} = useMutation({
-        mutationFn: async (item: IShoppingCartItem) => {
-            return await (item.quantity === 0)
+        mutationFn: (item: IShoppingCartItem) => {
+            return (item.quantity === 0)
                 ? deleteSoppingCartItems(item.id)
                 : updateSoppingCartItems(item)
         },
@@ -80,9 +82,7 @@ export const useShoppingCart = () => {
             return queryClient.setQueryData(['shoppingCart'], items)
         },
         onSuccess: () => {
-            return queryClient.invalidateQueries(['shoppingCart'], {
-                exact: true
-            })
+            return queryClient.invalidateQueries(['shoppingCart'])
         }
     })
 

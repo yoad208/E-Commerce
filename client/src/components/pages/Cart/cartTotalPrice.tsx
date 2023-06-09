@@ -31,7 +31,9 @@ export const CartTotalPrice: FC<ICartTotalPrice> = ({cartProducts, cartQuantity,
                 {
                     formatCurrency(
                         cartProducts?.reduce((total, cartItem) => {
-                            const item = productsArray?.find((i: IProducts) => (i.id === cartItem.id && cartItem.isChecked))
+                            const item = productsArray?.find(
+                                (i: IProducts) => (i.id === cartItem.productID && cartItem.isChecked)
+                            )
                             return total + (item?.price || 0) * cartItem.quantity
                         }, 0)
                     )

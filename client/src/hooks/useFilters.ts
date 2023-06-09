@@ -31,7 +31,7 @@ export const useFilters = (data: IProducts[], query: string) => {
             (!args?.sizes || product.sizes?.some(s => args?.sizes.includes(s))) &&
             (!args?.rating || product.rating === parseInt(args?.rating))
         );
-        sortBy(products, args?.sortType)
+        sortBy(products, args?.sortBy)
         return products
     }, [data, filters])
 }

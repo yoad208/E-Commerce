@@ -1,4 +1,4 @@
-import React, {FC, useEffect} from "react";
+import {FC} from "react";
 import {IProducts} from "../../interfaces/Iproducts.interface";
 import {useNavigate} from "react-router-dom";
 import {
@@ -17,10 +17,10 @@ import {formatCurrency} from "../../utilities/formatCurrency";
 import {Icon} from "@chakra-ui/icons";
 import {AiFillHeart, AiFillStar} from "react-icons/all";
 import {FavouritesButton} from "./favouritesButton";
-import {useProducts} from "../../hooks/useProducts";
 import {useWishList} from "../../hooks/useWishList";
 import {v4 as uuidV4} from "uuid";
-import {IWishListItem} from "../../interfaces/IWishList.interface";
+import {useAuthUser, useIsAuthenticated} from "react-auth-kit";
+import {useToastMessages} from "../../hooks/useToastMessages";
 
 interface cardProps extends CardProps {
     product: IProducts
@@ -30,21 +30,25 @@ export const ProductCard: FC<cardProps> = ({product, ...rest}) => {
 
     const navigate = useNavigate()
     const [isLargerThen480] = useMediaQuery('(min-width: 480px)')
+    const isAuthenticated = useIsAuthenticated()
+    const {ErrorToast} = useToastMessages()
+    const auth = useAuthUser()
     const {
         deleteFromWishList,
         addToWishList,
         wishListData
     } = useWishList()
 
-    const item = wishListData?.find(item =>
-        item.productID === product.id
-    )
-
     const navigateToCurrentPage = () => navigate(`/store/item/${product.id}`)
-    const handleFavorites = (item: IWishListItem) => {
-        if (item) return deleteFromWishList(item.id)
-        return addToWishList({
+
+    const handleFavorites = () => {
+        if (!isAuthenticated()) return ErrorToast('You must be logged in to add to favorites')
+        let existingItem = wishListData?.find(i => i.productID === product.id)
+        if (existingItem) return deleteFromWishList(existingItem.id)
+        console.log(auth())
+        addToWishList({
             id: uuidV4(),
+            userID: auth()?.id,
             productID: product.id,
             color: product.colors[0],
             size: product.sizes[0]
@@ -80,7 +84,7 @@ export const ProductCard: FC<cardProps> = ({product, ...rest}) => {
                         : "blackAlpha.400"
                 }
                 icon={AiFillHeart}
-                onClick={() => handleFavorites(item as IWishListItem)}
+                onClick={handleFavorites}
             />
         </CardHeader>
         <CardBody px={1} py={0}>

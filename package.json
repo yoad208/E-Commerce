@@ -7,8 +7,12 @@
     "dev": "cd client && npm run dev",
     "build": "cd client && npm run build",
     "install-client": "cd client && npm install",
+    "install-server": "cd client && npm install",
     "serve": "cd server && npm run server"
   },
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "reactjs-social-login": "^2.6.2"
+  }
 }

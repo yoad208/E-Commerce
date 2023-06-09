@@ -1,4 +1,4 @@
-import React, {FC, useMemo, useState} from 'react';
+import {FC, memo, useCallback, useMemo, useState} from 'react';
 import {ISpecificProduct} from "../../../interfaces/IspecificProduct.interface";
 import {Box, Button, Card, CardBody, CardHeader, CardProps, HStack, Image, Stack, Text} from "@chakra-ui/react";
 import {formatCurrency} from "../../../utilities/formatCurrency";
@@ -8,10 +8,10 @@ import {ProductTabs} from "./productTabs";
 import {FavouritesButton} from "../../customComps/favouritesButton";
 import {useShoppingCart} from "../../../hooks/useShoppingCart";
 import {v4 as uuidV4} from "uuid";
-import {addWishListItem} from "../../../api/wishListApi";
 import {useWishList} from "../../../hooks/useWishList";
-import {IWishListItem} from "../../../interfaces/IWishList.interface";
-import {useProducts} from "../../../hooks/useProducts";
+import {isAuthenticated} from "react-auth-kit/dist/utils/utils";
+import {useToastMessages} from "../../../hooks/useToastMessages";
+import {useAuthUser, useIsAuthenticated} from "react-auth-kit";
 
 interface specificProductCard extends CardProps {
     product: ISpecificProduct
@@ -19,33 +19,38 @@ interface specificProductCard extends CardProps {
 
 export const SpecificItemCard: FC<specificProductCard> = ({product, ...rest}) => {
 
-    const [selectedColor, setSelectedColor] = useState(product?.colors[0] || '')
-    const [selectedSize, setSelectedSize] = useState(product?.sizes[0] || '')
+    const [selectedColor, setSelectedColor] = useState(product.colors[0] || '')
+    const [selectedSize, setSelectedSize] = useState(product.sizes[0] || '')
     const {addToCart} = useShoppingCart()
     const {wishListData, addToWishList, deleteFromWishList} = useWishList()
+    const {ErrorToast} = useToastMessages()
+    const isAuthenticated = useIsAuthenticated()
+    const auth = useAuthUser()
 
     const handleAddToCart = () => {
-        if (selectedColor !== undefined && selectedSize !== undefined) {
-            addToCart({
-                id: uuidV4(),
-                productID: product?.id,
-                color: selectedColor,
-                size: selectedSize,
-                quantity: 1,
-                isChecked: false
-            })
+        if (!isAuthenticated()) return ErrorToast('You must be logged in to add to cart')
+
+        const cartItem = {
+            id: uuidV4(),
+            userID: auth()?.id,
+            productID: product?.id,
+            color: selectedColor,
+            size: selectedSize,
+            quantity: 1,
+            isChecked: false
         }
+
+        if (selectedColor === '' || selectedSize === '') return ErrorToast('Please select color and size')
+        addToCart(cartItem)
     }
 
-    // TODO make clean code for this because is exist in ProductCard component
-
-    const item = wishListData?.find(item =>
-        item.productID === product.id
-    )
-    const handleFavorites = (item: IWishListItem) => {
-        if (item) return deleteFromWishList(item.id)
+    const handleFavorites = () => {
+        if (!isAuthenticated()) return ErrorToast('You must be logged in to add to favorites')
+        let existingItem = wishListData?.find(i => i.productID === product.id)
+        if (existingItem) return deleteFromWishList(existingItem.id)
         return addToWishList({
             id: uuidV4(),
+            userID: auth()?.id,
             productID: product.id,
             color: product.colors[0],
             size: product.sizes[0]
@@ -87,7 +92,7 @@ export const SpecificItemCard: FC<specificProductCard> = ({product, ...rest}) =>
                             shadow={"md"}
                             _hover={{shadow: "inner"}}
                             cursor={'pointer'}
-                            onClick={() => setSelectedColor(color)}
+                            onClick={() => setSelectedColor(color === selectedColor ? '' : color)}
                         >
                             <Box
                                 bg={color}
@@ -113,7 +118,7 @@ export const SpecificItemCard: FC<specificProductCard> = ({product, ...rest}) =>
                             _hover={{shadow: "inner"}}
                             textAlign={'center'}
                             cursor={'pointer'}
-                            onClick={() => setSelectedSize(size)}
+                            onClick={() => setSelectedSize(size === selectedSize ? '' : size)}
                         >
                             <Text
                                 fontSize={14}
@@ -141,7 +146,7 @@ export const SpecificItemCard: FC<specificProductCard> = ({product, ...rest}) =>
                         fontSize={28}
                         cursor={'pointer'}
                         color={wishListData?.find(i => i.productID === product.id) ? 'blackAlpha.900' : 'blackAlpha.300'}
-                        onClick={() => handleFavorites(item as IWishListItem)}
+                        onClick={handleFavorites}
                     />
                 </HStack>
                 <ProductTabs product={product}/>

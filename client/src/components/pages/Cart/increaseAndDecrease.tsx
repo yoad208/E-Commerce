@@ -1,6 +1,6 @@
 import React, {FC} from "react";
 import {IShoppingCartItem} from "../../../interfaces/IShoppingCartItem.interface";
-import {Box, Divider, HStack} from "@chakra-ui/react";
+import {Box, HStack} from "@chakra-ui/react";
 import {useShoppingCart} from "../../../hooks/useShoppingCart";
 
 type TIncreaseAndDecrease = {

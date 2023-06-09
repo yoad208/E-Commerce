@@ -1,10 +1,8 @@
-import React, {FC, useContext, useEffect, useState} from "react";
+import {FC, useState} from "react";
 import {IShoppingCartItem} from "../../../interfaces/IShoppingCartItem.interface";
 import {
     HStack, Image, Stack,
-    Tr,
-    Td,
-    Text, useMediaQuery, Checkbox, Box, Divider, Spacer, Spinner
+    Text, useMediaQuery, Checkbox, Divider, Spacer, Spinner
 } from "@chakra-ui/react";
 import {Icon} from "@chakra-ui/icons";
 import {AiFillHeart, BsTrash} from "react-icons/all";
@@ -18,21 +16,27 @@ import {useProducts} from "../../../hooks/useProducts";
 import {IProducts} from "../../../interfaces/Iproducts.interface";
 import {useNavigate} from "react-router-dom";
 import {v4 as uuidV4} from "uuid";
-export const CartItemCard: FC<IShoppingCartItem> = ({productID, id, color, size, quantity, isChecked}) => {
+import {useAuthUser} from "react-auth-kit";
+
+type TCartItemCard = {
+    item: IShoppingCartItem
+}
+export const CartItemCard: FC<TCartItemCard> = ({item}) => {
 
     const navigate = useNavigate()
     const [isLargerThen441] = useMediaQuery('(min-width: 441px)')
     const {addToWishList} = useWishList()
     const {productsArray} = useProducts()
     const {deleteCartItem, updateCartItem} = useShoppingCart()
-    const cartItem = productsArray?.find((item: IProducts) => item.id === productID)
+    const cartItem = productsArray?.find((i: IProducts) => i.id === item.productID)
     const [loading, setLoading] = useState(false)
+    const auth = useAuthUser()
 
     const navigateToCurrentPage = () => navigate(`/store/item/${cartItem.id}`)
     const handleDelete = () => {
         setLoading(true)
         setTimeout(() => {
-            deleteCartItem(id)
+            deleteCartItem(item.id)
             setLoading(false)
         }, 1000)
     }
@@ -41,23 +45,25 @@ export const CartItemCard: FC<IShoppingCartItem> = ({productID, id, color, size,
         setTimeout(() => {
             addToWishList({
                 id: uuidV4(),
+                userID: auth()?.id,
                 productID: cartItem.id,
                 color: cartItem.color,
                 size: cartItem.size
             })
-            deleteCartItem(cartItem.id)
+            deleteCartItem(item.id)
             setLoading(false)
         }, 1000)
     }
 
 
     return <>
-        <HStack px={2} align={'flex-start'} pos={"relative"} opacity={loading ? 0.5: 1}>
+        <HStack px={2} align={'flex-start'} pos={"relative"} opacity={loading ? 0.5 : 1}>
             {loading && <Spinner pos={'absolute'} top={'35%'} left={'50%'}/>}
             <Checkbox
-                isChecked={isChecked}
+                isChecked={item.isChecked}
                 onChange={e => updateCartItem({
-                    productID, id, color, size, quantity, isChecked: e.target.checked
+                    ...item,
+                    isChecked: e.target.checked
                 })}
             />
             <Image
@@ -77,12 +83,12 @@ export const CartItemCard: FC<IShoppingCartItem> = ({productID, id, color, size,
                         )
                     )}
                 </Text>
-                <SelectedSizeAndColor selectedColor={color} selectedSize={size}/>
+                <SelectedSizeAndColor selectedColor={item.color} selectedSize={item.size}/>
                 <HStack justify={'space-between'} maxW={'200px'}>
                     <Text fontWeight={"bold"}>
-                        {formatCurrency((cartItem?.price || 0) * quantity)}
+                        {formatCurrency((cartItem?.price || 0) * item.quantity)}
                     </Text>
-                    <IncreaseAndDecrease cartItem={{productID, id, color, size, quantity, isChecked}}/>
+                    <IncreaseAndDecrease cartItem={item}/>
                 </HStack>
             </Stack>
             <Spacer/>

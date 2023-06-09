@@ -6,7 +6,6 @@ export interface IProducts {
     picture: string,
     rating: number,
     inStock: boolean,
-    isFav: boolean,
     sizes: string[],
     colors: string[]
 }

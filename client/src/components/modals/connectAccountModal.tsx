@@ -8,19 +8,21 @@ import {
     ModalCloseButton,
     Text, ModalFooter
 } from '@chakra-ui/react'
-import {RegisterForm} from "./registerForm";
-import {LoginForm} from "./loginForm";
+import {RegisterForm} from "../layout/registerForm";
+import {LoginForm} from "../layout/loginForm";
 import {Icon} from "@chakra-ui/icons";
 import {AiOutlineClose} from "react-icons/all";
 
-
-export const ConnectAccountModal: FC = () => {
+type Props = {
+    btnText: string
+}
+export const ConnectAccountModal: FC<Props> = ({btnText}) => {
 
     const {isOpen, onOpen, onClose} = useDisclosure()
     const [haveAccount, setHaveAccount] = useState<boolean>(false)
 
     return <>
-        <Text cursor='pointer' width={'100%'} onClick={onOpen}>sign-in / register</Text>
+        <Text cursor='pointer' width={'100%'} onClick={onOpen} children={btnText} />
         <Modal isOpen={isOpen} onClose={onClose}>
             <ModalOverlay/>
             <ModalContent m={'auto'} p={0} maxW={'550px'}>
@@ -35,18 +37,11 @@ export const ConnectAccountModal: FC = () => {
                     </ModalCloseButton>
                 </ModalHeader>
                 <ModalBody>
-                    {haveAccount ? <LoginForm/> : <RegisterForm/>}
+                    {haveAccount
+                        ? <LoginForm setHaveAccount={setHaveAccount} onClose={onClose}/>
+                        : <RegisterForm setHaveAccount={setHaveAccount} onClose={onClose}/>
+                    }
                 </ModalBody>
-                <ModalFooter justifyContent={'left'} color={'#f17777'}>
-                    <Text cursor='pointer' onClick={() =>
-                        setHaveAccount(!haveAccount)}>
-                        {
-                            haveAccount
-                                ? 'You don`t have an account yet?'
-                                : 'already have an account?'
-                        }
-                    </Text>
-                </ModalFooter>
             </ModalContent>
         </Modal>
     </>

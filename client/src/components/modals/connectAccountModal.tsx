@@ -22,17 +22,17 @@ export const ConnectAccountModal: FC<Props> = ({btnText}) => {
     const [haveAccount, setHaveAccount] = useState<boolean>(false)
 
     return <>
-        <Text cursor='pointer' width={'100%'} onClick={onOpen} children={btnText} />
+        <Text cursor='pointer' width={'100%'} onClick={onOpen} children={btnText}/>
         <Modal isOpen={isOpen} onClose={onClose}>
             <ModalOverlay/>
             <ModalContent m={'auto'} p={0} maxW={'550px'}>
                 <ModalHeader>
-                    <ModalCloseButton onClick={onClose}
-                                      borderWidth={1}
-                                      borderColor={"red.700"}
-                                      borderRadius='full'
-                                      transition='.5s'
-                                      _hover={{bg: '#C53030'}}>
+                    <ModalCloseButton
+                        onClick={onClose}
+                        borderWidth={1}
+                        borderRadius='full'
+                        transition='.5s'
+                    >
                         <Icon as={AiOutlineClose} fontSize={20}/>
                     </ModalCloseButton>
                 </ModalHeader>

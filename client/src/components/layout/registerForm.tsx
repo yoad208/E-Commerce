@@ -102,20 +102,20 @@ export const RegisterForm: FC<TForm> = ({setHaveAccount, onClose}) => {
             </FormControl>
 
 
-            <FormControl mt={5}>
+            <FormControl my={3}>
                 <Button colorScheme='blue' w='100%' type='submit'>Register</Button>
             </FormControl>
         </form>
         <Stack gap={2}>
             <FormControl>
+                <GoogleAuth onClose={onClose}/>
+            </FormControl>
+
+            <FormControl>
                 <Text cursor='pointer' onClick={() => setHaveAccount(true)}>
                     already have an account?
                 </Text>
             </FormControl>
-
-            <HStack gap={2}>
-                <GoogleAuth onClose={onClose}/>
-            </HStack>
         </Stack>
     </FormControl>
 }

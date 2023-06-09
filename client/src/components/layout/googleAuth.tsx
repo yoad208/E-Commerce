@@ -48,6 +48,7 @@ export const GoogleAuth: FC<{onClose?: () => void}> = ({onClose}) => {
     const login = useGoogleLogin({onSuccess, onError})
 
     return <Button
+        w={'full'}
         size={'sm'}
         colorScheme={'blue'}
         variant={'outline'}

@@ -71,8 +71,8 @@ export const LoginForm: FC<TForm> = ({setHaveAccount, onClose}) => {
                 You don`t have an account yet?
             </Text>
             <Spacer/>
-            <Text cursor='pointer'>
-                Forgot your password?
+            <Text cursor='pointer' color={'red.400'} fontWeight={'semibold'}>
+                Forgot password?
             </Text>
         </HStack>
     </FormControl>;

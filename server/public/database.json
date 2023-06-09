@@ -542,15 +542,16 @@
       "size": "xs"
     },
     {
-      "id": "102205ef-23f9-4d9b-b25d-70cf5c6fa7b4",
-      "userID": "4ed379f0-f406-493c-aaed-e9c7ad45ee84",
+      "id": "4ef5cd2b-024f-4f6b-9ce1-96c27b271a88",
+      "userID": "7b64def9-4559-4a6a-8d72-28d7bfb4b5d7",
       "productID": "9",
       "size": "xs"
     },
     {
-      "id": "4ef5cd2b-024f-4f6b-9ce1-96c27b271a88",
-      "userID": "7b64def9-4559-4a6a-8d72-28d7bfb4b5d7",
-      "productID": "9",
+      "id": "3348449c-9a7a-47d6-88ea-6b3c06a047fc",
+      "userID": "4ed379f0-f406-493c-aaed-e9c7ad45ee84",
+      "productID": "6",
+      "color": "black",
       "size": "xs"
     }
   ],

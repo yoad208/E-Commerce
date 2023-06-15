@@ -3,7 +3,7 @@ import {
     FormControl,
     Input,
     Button,
-    Heading, Box, FormLabel, Text, Stack, HStack
+    Heading, Box, Text, Stack, Divider, VStack
 } from '@chakra-ui/react'
 import {IUser} from "../../interfaces/IUser.interface";
 import {useFormik} from 'formik'
@@ -12,15 +12,18 @@ import {registerSchema} from "../../schemes/userScheme";
 import {ErrorMassage} from "../customComps/errorMassage";
 import {useLogin} from "../../hooks/useLogin";
 import {GoogleAuth} from "./googleAuth";
-import {shouldThrowError} from "@tanstack/react-query/build/lib/utils";
+import {useNavigate} from "react-router-dom";
+import {DecisionDivider} from "../customComps/decisionDivider";
+import {PageBreadcrumb} from "../customComps/pageBreadcrumb";
 
 
 export type TForm = {
-    setHaveAccount: Dispatch<boolean>
+    setHaveAccount?: Dispatch<boolean>
     onClose?: () => void
 }
-export const RegisterForm: FC<TForm> = ({setHaveAccount, onClose}) => {
+export const RegisterForm: FC<TForm> = ({onClose}) => {
 
+    const navigate = useNavigate()
     const {register} = useLogin()
     const initialValues: IUser = {
         id: uuidV4(),
@@ -37,7 +40,7 @@ export const RegisterForm: FC<TForm> = ({setHaveAccount, onClose}) => {
     const onSubmit = () => {
         register(values)
         resetForm()
-        setHaveAccount(true)
+        navigate('/auth/login')
     }
 
     const {
@@ -54,68 +57,75 @@ export const RegisterForm: FC<TForm> = ({setHaveAccount, onClose}) => {
     })
 
 
-    return <FormControl>
-        <form onSubmit={handleSubmit}>
-            <Heading fontSize={24} textAlign='center'>Create account right here</Heading>
-            <FormControl>
-                <FormLabel>userName:</FormLabel>
-                <Input
-                    w='full'
-                    type='text'
-                    placeholder='Enter full name'
-                    {...getFieldProps('userName')}
-                />
-                {errors.userName && touched.userName && <ErrorMassage children={errors.userName}/>}
-            </FormControl>
+    return <>
+        <PageBreadcrumb title={'auth / Register'}/>
+        <Box bg={"white"} maxW={'500px'} w={'full'} mx={'auto'} my={5} py={5} px={5} boxShadow={'2xl'}>
+        <Heading fontSize={24} textAlign='center' mb={3}>Create account right here</Heading>
+        <FormControl>
+            <form onSubmit={handleSubmit}>
+                <FormControl mb={3}>
+                    <Input
+                        w='full'
+                        type='text'
+                        placeholder='Enter full name'
+                        {...getFieldProps('userName')}
+                    />
+                    {errors.userName && touched.userName && <ErrorMassage children={errors.userName}/>}
+                </FormControl>
 
-            <FormControl>
-                <FormLabel>Phone:</FormLabel>
-                <Input
-                    w='full'
-                    type='tel'
-                    placeholder='Insert your phone number'
-                    {...getFieldProps('phone')}
-                />
-                {errors.phone && touched.phone && <ErrorMassage children={errors.phone}/>}
-            </FormControl>
+                <FormControl mb={3}>
+                    <Input
+                        w='full'
+                        type='tel'
+                        placeholder='Insert your phone number'
+                        {...getFieldProps('phone')}
+                    />
+                    {errors.phone && touched.phone && <ErrorMassage children={errors.phone}/>}
+                </FormControl>
 
-            <FormControl>
-                <FormLabel>Email:</FormLabel>
-                <Input
-                    w='full'
-                    type='email'
-                    placeholder='expemple@gmail.com'
-                    {...getFieldProps('email')}
-                />
-                {errors.email && touched.email && <ErrorMassage children={errors.email}/>}
-            </FormControl>
+                <FormControl mb={3}>
+                    <Input
+                        w='full'
+                        type='email'
+                        placeholder='expemple@gmail.com'
+                        {...getFieldProps('email')}
+                    />
+                    {errors.email && touched.email && <ErrorMassage children={errors.email}/>}
+                </FormControl>
 
-            <FormControl>
-                <FormLabel>Password:</FormLabel>
-                <Input
-                    w='full'
-                    type='text'
-                    placeholder='Password (min 8 character)'
-                    {...getFieldProps('password')}
-                />
-                {errors.password && touched.password && <ErrorMassage children={errors.password}/>}
-            </FormControl>
+                <FormControl mb={3}>
+                    <Input
+                        w='full'
+                        type='text'
+                        placeholder='Password (min 8 character)'
+                        {...getFieldProps('password')}
+                    />
+                    {errors.password && touched.password && <ErrorMassage children={errors.password}/>}
+                </FormControl>
 
 
-            <FormControl my={3}>
-                <Button colorScheme='blue' w='100%' type='submit'>Register</Button>
-            </FormControl>
-        </form>
-        <Stack gap={2}>
-            <FormControl>
+                <FormControl w='20%' mx={'auto'} my={5}>
+                    <Button
+                        colorScheme={'black'}
+                        color={'beige'}
+                        bg={'#131928'}
+                        w={'full'}
+                        mx={'auto'}
+                        rounded={'full'}
+                        type='submit'
+                    >
+                        Register
+                    </Button>
+                </FormControl>
+            </form>
+            <DecisionDivider/>
+            <VStack my={5}>
                 <GoogleAuth onClose={onClose}/>
-            </FormControl>
-
-            <FormControl>
-                <Text cursor='pointer' onClick={() => setHaveAccount(true)}>
-                    already have an account?
-                </Text>
-            </FormControl>
-        </Stack>
-    </FormControl>
+            </VStack>
+        </FormControl>
+        <Text textAlign={'center'} cursor='pointer' onClick={() => navigate('/auth/login')}>
+            already have an account?
+        </Text>
+    </Box>
+    </>
 }

@@ -1,16 +1,17 @@
 import axios from "axios";
 import {useSignIn} from "react-auth-kit";
+import {createToken} from "../api/usersApi";
 
 export const useGenerateToken = () => {
 
     const signIn = useSignIn()
-    const generateToken = async (userInfo: {email: string}) => {
-        const res = await axios.post('http://localhost:3000/login', {email: userInfo.email})
+    const generateToken = async (email: string) => {
+        const res = await createToken(email)
         signIn({
-            token: res.data.token,
-            expiresIn: res.data.expiresIn,
+            token: res.token,
+            expiresIn: res.expiresIn,
             tokenType: "Bearer",
-            authState: res.data.user
+            authState: res.user
         })
     }
 

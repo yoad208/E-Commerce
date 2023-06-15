@@ -16,7 +16,7 @@ CHAKRA-UI,
 REACT QUERY,
 
 
-server
+index
 ------------------------
 NEST-JS,
 

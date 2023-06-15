@@ -1,7 +1,7 @@
 import {useMutation, useQuery, useQueryClient} from "@tanstack/react-query";
 import {deleteUser, getUsers, postUser, updateUser} from "../api/usersApi";
 import {IUser} from "../interfaces/IUser.interface";
-import {useGenerateToken} from "../hooks/useGenerateToken";
+import {useGenerateToken} from "./useGenerateToken";
 import {LoginStatus, validateLogin} from "../utilities/loginValidation";
 import {useToastMessages} from "./useToastMessages";
 
@@ -28,7 +28,7 @@ export const useLogin = () => {
             if (validated === LoginStatus.Failed) {
                 return ErrorToast("Invalid email or password")
             }
-            generateToken({email: values.email}).then()
+            generateToken(values.email).then()
             return SuccessToast("Logged in successfully")
         },
         onSuccess: () => {
@@ -42,10 +42,10 @@ export const useLogin = () => {
 
             if (!userExist && user.provider === "google") {
                 return postUser(user).then(res => {
-                    generateToken({email: res.email}).then()
+                    generateToken(res.email).then()
                 })
             } else if (userExist && user.provider === "google") {
-                return generateToken({email: userExist.email})
+                return generateToken(userExist.email)
             }
 
             return postUser(user)
@@ -57,7 +57,7 @@ export const useLogin = () => {
 
     const {mutate: updateSpecificUser} = useMutation({
         mutationFn: updateUser,
-        onMutate: (userData) => {
+        onMutate: (userData: IUser) => {
             return queryClient.setQueryData(['users', userData.id], userData)
         },
         onSuccess: () => {

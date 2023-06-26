@@ -39,12 +39,15 @@ export const ProductCard: FC<cardProps> = ({product, ...rest}) => {
         wishListData
     } = useWishList()
 
-    const navigateToCurrentPage = () => navigate(`/store/item/${product.id}`)
+    const navigateToCurrentPage = () => {
+        navigate(`/store/item/${product.id}`)
+        window.scroll(0, 100)
+    }
 
     const handleFavorites = () => {
         if (!isAuthenticated()) return ErrorToast('You must be logged in to add to favorites')
         let existingItem = wishListData?.find(i => i.productID === product.id)
-        if (existingItem) return deleteFromWishList(existingItem.id)
+        if (existingItem) return deleteFromWishList(existingItem)
         console.log(auth())
         addToWishList({
             id: uuidV4(),
@@ -57,13 +60,13 @@ export const ProductCard: FC<cardProps> = ({product, ...rest}) => {
 
     return <Card {...rest}>
         <CardHeader pos={"relative"} p={0}>
-            <Image
-                borderRadius={'md'}
-                objectPosition={'center'}
-                objectFit={'cover'}
-                src={product.picture}
-                alt={product.productName}
-            />
+                <Image
+                    borderRadius={'md'}
+                    objectPosition={'center'}
+                    objectFit={'cover'}
+                    src={product.picture[0]}
+                    alt={product.productName}
+                />
             <Text
                 color={'blackAlpha.600'}
                 fontSize={14}

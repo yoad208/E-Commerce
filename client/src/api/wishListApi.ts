@@ -21,7 +21,7 @@ export const updateWishListItem = async (product: IWishListItem): Promise<IWishL
     return response.data
 }
 
-export const deleteWishListItem = async (id: string): Promise<any> => {
-    const response = await baseUrl.delete(`/wishList/${id}`);
+export const deleteWishListItem = async (item: IWishListItem): Promise<any> => {
+    const response = await baseUrl.delete(`/wishList/${item.id}`);
     return response.data
 }

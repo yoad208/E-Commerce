@@ -70,7 +70,7 @@ export const CartItemCard: FC<TCartItemCard> = ({item}) => {
                 objectFit='cover'
                 maxW={'100px'}
                 width={'98%'}
-                src={cartItem?.picture}
+                src={cartItem?.picture[0]}
                 alt='item image'
                 onClick={navigateToCurrentPage}
             />

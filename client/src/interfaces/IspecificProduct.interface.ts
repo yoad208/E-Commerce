@@ -1,13 +1,9 @@
-import {IProducts} from "../interfaces/Iproducts.interface";
+import {IProducts} from "./Iproducts.interface";
+import {IReviews} from "./Ireviews.interface";
 
 export interface ISpecificProduct extends IProducts {
     amount: number,
     description: string,
-    itemSpecifics: {
-        type?: string,
-        material?: string,
-        otherMaterial?: string,
-        style?: string,
-        department?: string
-    }
+    itemSpecifics: { key: string, value: string }[],
+    reviews: IReviews[]
 }

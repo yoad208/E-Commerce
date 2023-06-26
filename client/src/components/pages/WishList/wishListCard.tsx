@@ -29,7 +29,7 @@ export const WishListCard: FC<IWishListCard> = ({item, gridTemplate}) => {
     const handleDelete = () => {
         setLoading(true)
         setTimeout(() => {
-            deleteFromWishList(item.id)
+            deleteFromWishList(item)
             setLoading(false)
         }, 1000)
     }
@@ -72,7 +72,7 @@ export const WishListCard: FC<IWishListCard> = ({item, gridTemplate}) => {
                 w={"full"}
                 h={"full"}
                 maxW={'100%'}
-                src={currentItem?.picture}
+                src={currentItem?.picture[0]}
                 alt={'product image'}
             />
         </Box>

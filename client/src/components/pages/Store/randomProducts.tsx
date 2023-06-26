@@ -36,7 +36,7 @@ export const RandomProducts: FC<BoxProps> = ({...rest}) => {
             {randomProducts.map(item => {
                 return <WrapItem key={item?.id}>
                     <HStack align={"flex-start"}>
-                        <Image maxW={'4.5em'} objectFit={"cover"} src={item?.picture}/>
+                        <Image maxW={'4.5em'} objectFit={"cover"} src={item?.picture[0]}/>
                         <Stack>
                             <Text fontSize={"xs"} fontWeight={"medium"}
                                   as={"span"}>{slicingFormat(item?.productName, 0, 30)}</Text>

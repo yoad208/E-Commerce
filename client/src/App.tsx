@@ -21,7 +21,7 @@ const App: FC = () => {
         <Box position='relative' minH={'91.5vh'}>
                 <Routes>
                     <Route path={'/'} element={<Layout/>}>
-                        <Route index element={<Home/>}/>
+                        <Route index path={'/'} element={<Home/>}/>
                         <Route path={'/favourites'} element={<WishList/>}/>
                         <Route path={'/shoppingCart'} element={<ShoppingCart/>}/>
                         <Route path={'/settings'} element={<Settings/>}/>

@@ -1,4 +1,4 @@
-import {FC, memo, useCallback, useMemo, useState} from 'react';
+import {FC, useEffect, useState} from 'react';
 import {ISpecificProduct} from "../../../interfaces/IspecificProduct.interface";
 import {Box, Button, Card, CardBody, CardHeader, CardProps, HStack, Image, Stack, Text} from "@chakra-ui/react";
 import {formatCurrency} from "../../../utilities/formatCurrency";
@@ -9,9 +9,10 @@ import {FavouritesButton} from "../../customComps/favouritesButton";
 import {useShoppingCart} from "../../../hooks/useShoppingCart";
 import {v4 as uuidV4} from "uuid";
 import {useWishList} from "../../../hooks/useWishList";
-import {isAuthenticated} from "react-auth-kit/dist/utils/utils";
 import {useToastMessages} from "../../../hooks/useToastMessages";
 import {useAuthUser, useIsAuthenticated} from "react-auth-kit";
+import {insertAtIndex} from "../../../utilities/insertAtIndex";
+import {ImagesGallery} from "../../customComps/imagesGallery";
 
 interface specificProductCard extends CardProps {
     product: ISpecificProduct
@@ -27,6 +28,7 @@ export const SpecificItemCard: FC<specificProductCard> = ({product, ...rest}) =>
     const isAuthenticated = useIsAuthenticated()
     const auth = useAuthUser()
 
+
     const handleAddToCart = () => {
         if (!isAuthenticated()) return ErrorToast('You must be logged in to add to cart')
 
@@ -39,15 +41,20 @@ export const SpecificItemCard: FC<specificProductCard> = ({product, ...rest}) =>
             quantity: 1,
             isChecked: false
         }
+        const error: string = (product.colors.length && product.sizes.length) ? 'Please select a color and size'
+            : (product.colors.length && !product.sizes.length) ? 'Please select a color' : 'Please select a size'
 
-        if (selectedColor === '' || selectedSize === '') return ErrorToast('Please select color and size')
+        if ((product.colors.length > 0 && selectedColor === '') ||
+            (product.sizes.length > 0 && selectedSize === '')) {
+            return ErrorToast(error)
+        }
         addToCart(cartItem)
     }
 
     const handleFavorites = () => {
         if (!isAuthenticated()) return ErrorToast('You must be logged in to add to favorites')
         let existingItem = wishListData?.find(i => i.productID === product.id)
-        if (existingItem) return deleteFromWishList(existingItem.id)
+        if (existingItem) return deleteFromWishList(existingItem)
         return addToWishList({
             id: uuidV4(),
             userID: auth()?.id,
@@ -59,7 +66,7 @@ export const SpecificItemCard: FC<specificProductCard> = ({product, ...rest}) =>
 
     return <Card {...rest}>
         <CardHeader>
-            <Image w={"full"} h={450} maxW={'100%'} objectFit={'cover'} src={product?.picture} alt="image"/>
+            <ImagesGallery images={product?.picture}/>
         </CardHeader>
         <CardBody>
             <Stack flexDir={"column"}>
@@ -74,7 +81,9 @@ export const SpecificItemCard: FC<specificProductCard> = ({product, ...rest}) =>
                     ))}
                 </HStack>
 
-                {/*<Text><b>availability:</b> ({product?.inStock ? "in-stock" : "out-of-stock"})</Text>*/}
+                <Text><b>availability:</b> [ {product?.amount} items available in stock ! ]</Text>
+
+                <Text color={'red.500'} fontWeight={'bold'}>{product.salesAmount} Sold</Text>
 
                 <Text fontWeight={"extrabold"} fontSize={20}>
                     {formatCurrency(product?.price)}
@@ -141,13 +150,18 @@ export const SpecificItemCard: FC<specificProductCard> = ({product, ...rest}) =>
                         maxW={'80%'}
                         onClick={handleAddToCart}
                     />
-                    <FavouritesButton
-                        icon={AiFillHeart}
-                        fontSize={28}
-                        cursor={'pointer'}
-                        color={wishListData?.find(i => i.productID === product.id) ? 'blackAlpha.900' : 'blackAlpha.300'}
-                        onClick={handleFavorites}
-                    />
+                    <HStack>
+                        <FavouritesButton
+                            icon={AiFillHeart}
+                            fontSize={28}
+                            cursor={'pointer'}
+                            color={wishListData?.find(i => i.productID === product.id) ? 'blackAlpha.900' : 'blackAlpha.300'}
+                            onClick={handleFavorites}
+                        />
+                        <Text color={'blackAlpha.500'}>
+                            <b>{product.likesAmount}</b>
+                        </Text>
+                    </HStack>
                 </HStack>
                 <ProductTabs product={product}/>
             </Stack>

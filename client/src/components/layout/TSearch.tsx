@@ -4,12 +4,15 @@ import {Icon} from "@chakra-ui/icons";
 import {BsSearch} from "react-icons/all";
 import {useUrlParams} from "../../hooks/useUrlParams";
 import {useQueryString} from "../../hooks/useQueryString";
+import {useNavigate} from "react-router-dom";
 
 type TSearch = {
     setIsOpen?: Dispatch<boolean>
 }
 
 export const Search: FC<TSearch> = ({setIsOpen}) => {
+
+    const navigate = useNavigate()
     const {query} = useQueryString()
     const [urlParams, setUrlParams] = useUrlParams("search", query.get("search") || "")
     const [searchParam, setSearchParam] = useState<string>(urlParams)

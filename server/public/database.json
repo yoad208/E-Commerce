@@ -168,7 +168,7 @@
       "amount": 5,
       "reviews": [],
       "rating": 4,
-      "likesAmount": 0,
+      "likesAmount": 1,
       "salesAmount": 0,
       "inStock": true,
       "colors": [],
@@ -1030,11 +1030,27 @@
       "size": "xs"
     },
     {
-      "id": "0c2bb8be-082e-49b6-b5f3-36258fdd46dc",
+      "id": "1ab020ac-bf86-4bb2-aac3-1ee1b2c3a7f9",
       "userID": "4ed379f0-f406-493c-aaed-e9c7ad45ee84",
       "productID": "1",
       "size": "xs"
+    },
+    {
+      "id": "47b1ae3f-453f-479a-8350-0d6cf8776fe4",
+      "userID": "4ed379f0-f406-493c-aaed-e9c7ad45ee84",
+      "productID": "7",
+      "size": "xs"
     }
   ],
-  "shoppingCart": []
+  "shoppingCart": [
+    {
+      "id": "529413c6-0158-46b1-9cf5-db06c896fb1c",
+      "userID": "4ed379f0-f406-493c-aaed-e9c7ad45ee84",
+      "productID": "1",
+      "color": "",
+      "size": "xs",
+      "quantity": 3,
+      "isChecked": true
+    }
+  ]
 }

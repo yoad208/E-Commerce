@@ -12,11 +12,16 @@ import {useUrlParams} from "../../../hooks/useUrlParams";
 import {useQueryString} from "../../../hooks/useQueryString";
 import {ICategoryName} from "../../../interfaces/ICategoryName.interface";
 import {ICategories} from "../../../interfaces/ICategories.interface";
+import {useNavigate} from "react-router-dom";
 
 const CategoryName: FC<ICategoryName> = ({categoryImage, categoryName, categoryID: CID}) => {
 
+
     const {query} = useQueryString()
-    const [categoryID, setCategoryID] = useUrlParams("categoryID", query.get("categoryID") || "")
+    const [categoryID, setCategoryID] = useUrlParams(
+        "categoryID",
+        query.get("categoryID") || ""
+    )
 
     return <HStack
         key={CID}
@@ -24,7 +29,9 @@ const CategoryName: FC<ICategoryName> = ({categoryImage, categoryName, categoryI
         _hover={{color: 'blue.500'}}
         transition={'.5s'}
         px={2}
-        onClick={() => setCategoryID(CID)}>
+        onClick={() => {
+            setCategoryID(CID)
+        }}>
         <Text>{categoryName}</Text>
         <Spacer/>
         <Avatar size={"xs"} src={categoryImage}/>
@@ -55,8 +62,8 @@ export const Categories: FC<ICategories> = ({navigationType, name, icon}) => {
                     <Text fontSize={14}>{name}</Text>
                 </HStack>
                 {isOpen
-                    ? <MdKeyboardArrowDown style={{ fontSize: 20}}/>
-                    : <MdKeyboardArrowRight style={{ fontSize: 20}}/>
+                    ? <MdKeyboardArrowDown style={{fontSize: 20}}/>
+                    : <MdKeyboardArrowRight style={{fontSize: 20}}/>
                 }
             </HStack>
             <Collapse in={isOpen}>

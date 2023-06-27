@@ -21,12 +21,17 @@ import {
     MdOutlineKeyboardArrowLeft,
     MdOutlineKeyboardArrowRight, MdOutlineSupportAgent
 } from "react-icons/all";
+import {useQueryString} from "../../../hooks/useQueryString";
+import {useUrlParams} from "../../../hooks/useUrlParams";
 
 const CategoriesSliderSection: FC = () => {
 
-    const location = useLocation()
-    const query = new URLSearchParams(location.search)
-    const navigate = useNavigate()
+    const {query} = useQueryString()
+    const [categoryID, setCategoryID] = useUrlParams(
+        "categoryID",
+        query.get("categoryID") || ""
+    )
+
     const categoriesRef = useRef<HTMLDivElement>(null)
     const imageWidthRef = useRef<HTMLDivElement>(null)
 
@@ -36,16 +41,6 @@ const CategoriesSliderSection: FC = () => {
                 ? -imageWidthRef.current.clientWidth
                 : imageWidthRef.current.clientWidth
         }
-    }
-
-    const NavigateToSpecificCategory = (currentPath: string) => {
-        if (!currentPath) query.delete("categoryID")
-        if (currentPath && query.get("categoryID")) {
-            query.set("categoryID", currentPath)
-        } else if (currentPath && !query.get("categoryID")) {
-            query.append("categoryID", currentPath)
-        }
-        navigate(`/store/?${query.toString()}`)
     }
 
     return <Box as={"section"}>
@@ -64,11 +59,11 @@ const CategoriesSliderSection: FC = () => {
                     return <VStack
                         ref={imageWidthRef}
                         minW={{base: '33.33%', md: '25%', lg: '20%'}}
-                        key={category.categoryID}
-                        onClick={() => NavigateToSpecificCategory(category.categoryID)}
+                        key={category?.categoryID}
+                        onClick={() => setCategoryID(category?.categoryID)}
                     >
                         <Avatar src={category.image} size={{base: 'lg', sm: '2xl'}}/>
-                        <Text color={"blackAlpha.500"} fontWeight={"bold"}>{category.categoryName}</Text>
+                        <Text color={"blackAlpha.500"} fontWeight={"bold"}>{category?.categoryName}</Text>
                     </VStack>
                 })}
             </HStack>

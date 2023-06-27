@@ -3,6 +3,7 @@ import {Button, Menu, MenuButton, MenuItem, MenuList} from "@chakra-ui/react";
 import {ChevronDownIcon} from "@chakra-ui/icons";
 import {useUrlParams} from "../../hooks/useUrlParams";
 import {useQueryString} from "../../hooks/useQueryString";
+import {useNavigate} from "react-router-dom";
 
 type TSortedByOptions = {
     label: any,
@@ -17,6 +18,7 @@ const sortedByOptions: Array<TSortedByOptions> = [
 ]
 export const SortBy = () => {
 
+    const navigate = useNavigate()
     const {query} = useQueryString()
     const [sortByParams, setSortByParams] = useUrlParams(
         'sortBy',

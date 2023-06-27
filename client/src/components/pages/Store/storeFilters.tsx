@@ -17,10 +17,12 @@ import {AiFillStar} from "react-icons/all";
 import {useProducts} from "../../../hooks/useProducts";
 import {IProducts} from "../../../interfaces/Iproducts.interface";
 import {useQueryString} from "../../../hooks/useQueryString";
+import {useNavigate} from "react-router-dom";
 
 const FilterByAvailability = () => {
 
 
+    const navigate = useNavigate()
     const {query} = useQueryString()
 
     const [inStockParam, setInStockParam] = useUrlParams(
@@ -44,7 +46,9 @@ const FilterByAvailability = () => {
             <Button
                 size={'xs'}
                 colorScheme={'blue'}
-                onClick={() => setInStockParam("")}
+                onClick={() => {
+                    setInStockParam("")
+                }}
             >
                 clear
             </Button>
@@ -64,6 +68,7 @@ const FilterByAvailability = () => {
 
 function FilterByPrice() {
 
+    const navigate = useNavigate()
     const {query} = useQueryString()
 
     const [minPrice, setMinPrice] = useUrlParams(
@@ -113,6 +118,7 @@ function FilterByPrice() {
 
 function FilterByColor() {
 
+    const navigate = useNavigate()
     const {query} = useQueryString()
     const {productsArray} = useProducts()
     const [allColors, setAllColors] = useState<string[]>([])
@@ -172,6 +178,7 @@ function FilterByColor() {
 
 function FilterBySize() {
 
+    const navigate = useNavigate()
     const {query} = useQueryString()
     const {productsArray} = useProducts()
     const [allSizes, setAllSizes] = useState<string[]>([])
@@ -235,6 +242,8 @@ function FilterBySize() {
 }
 
 function FilterByRating() {
+
+    const navigate = useNavigate()
     const {query} = useQueryString()
     const [ratingParams, setRatingParams] = useUrlParams(
         "rating",
@@ -254,7 +263,9 @@ function FilterByRating() {
             <Button
                 size={'xs'}
                 colorScheme={'blue'}
-                onClick={() => setRatingParams("")}
+                onClick={() => {
+                    setRatingParams("")
+                }}
             >
                 clear
             </Button>
@@ -267,7 +278,9 @@ function FilterByRating() {
                     color={ratingParams && i <= parseInt(ratingParams) - 1
                         ? "gold"
                         : "blackAlpha.200"}
-                    onClick={() => setRatingParams((i + 1).toString())}
+                    onClick={() => {
+                        setRatingParams((i + 1).toString())
+                    }}
                     as={AiFillStar}
                 />
             ))}

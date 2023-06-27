@@ -1,8 +1,6 @@
 import {BoxProps, HStack, Spacer, Text} from "@chakra-ui/react";
 import React, {FC, useCallback, useContext, useMemo} from "react";
 import {paginationProvider} from "../../../context/paginationProvider";
-import {useUrlParams} from "../../../hooks/useUrlParams";
-import {useQueryString} from "../../../hooks/useQueryString";
 import {SortBy} from "../../customComps/sortBy";
 
 

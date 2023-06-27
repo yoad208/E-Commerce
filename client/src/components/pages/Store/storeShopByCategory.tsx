@@ -21,7 +21,9 @@ export const StoreShopByCategory: FC<BoxProps> = ({...rest}) => {
             <Button
                 size={'xs'}
                 colorScheme={'blue'}
-                onClick={() => setCategoryID('')}
+                onClick={() => {
+                    setCategoryID('')
+                }}
             >
                 Clear
             </Button>
@@ -35,7 +37,9 @@ export const StoreShopByCategory: FC<BoxProps> = ({...rest}) => {
                     cursor={"pointer"}
                     fontWeight={"medium"}
                     color={query.get("categoryID") === category.categoryID ? "blackAlpha.800" : "blackAlpha.500"}
-                    onClick={() => setCategoryID(category.categoryID)}
+                    onClick={() => {
+                        setCategoryID(category.categoryID)
+                    }}
                 >
                     {category.categoryName.toLowerCase()}
                 </Text>

@@ -1,11 +1,10 @@
-interface IAddress {
+export interface IAddress {
     id: string
     userId: string
     city: string
-    street: string
+    addressLine: string
     zipCode: string
     country: string
-    state: string
     createdAt: Date
     updatedAt: Date
 }

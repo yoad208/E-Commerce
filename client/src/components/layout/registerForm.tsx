@@ -3,7 +3,7 @@ import {
     FormControl,
     Input,
     Button,
-    Heading, Box, Text, Stack, Divider, VStack
+    Heading, Box, Text, VStack
 } from '@chakra-ui/react'
 import {IUser} from "../../interfaces/IUser.interface";
 import {useFormik} from 'formik'
@@ -60,8 +60,7 @@ export const RegisterForm: FC<TForm> = ({onClose}) => {
     return <>
         <PageBreadcrumb title={'auth / Register'}/>
         <Box bg={"white"} maxW={'500px'} w={'full'} mx={'auto'} my={5} py={5} px={5} boxShadow={'2xl'}>
-        <Heading fontSize={24} textAlign='center' mb={3}>Create account right here</Heading>
-        <FormControl>
+            <Heading fontSize={24} textAlign='center' mb={3}>Create account right here</Heading>
             <form onSubmit={handleSubmit}>
                 <FormControl mb={3}>
                     <Input
@@ -122,10 +121,9 @@ export const RegisterForm: FC<TForm> = ({onClose}) => {
             <VStack my={5}>
                 <GoogleAuth onClose={onClose}/>
             </VStack>
-        </FormControl>
-        <Text textAlign={'center'} cursor='pointer' onClick={() => navigate('/auth/login')}>
-            already have an account?
-        </Text>
-    </Box>
+            <Text textAlign={'center'} cursor='pointer' onClick={() => navigate('/auth/login')}>
+                already have an account?
+            </Text>
+        </Box>
     </>
 }

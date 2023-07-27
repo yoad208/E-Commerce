@@ -14,8 +14,7 @@ export const ShoppingCart: FC = () => {
         shoppingCartData,
         error,
         isError,
-        isLoading,
-        cartQuantity
+        isLoading
     } = useShoppingCart()
 
 
@@ -43,8 +42,6 @@ export const ShoppingCart: FC = () => {
             rounded={'md'}
             maxW={{base: '100%', md: '400px'}}
             justify={'space-between'}
-            cartQuantity={cartQuantity}
-            cartProducts={shoppingCartData || []}
         />
     </Stack>
 }

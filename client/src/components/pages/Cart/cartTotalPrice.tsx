@@ -1,22 +1,12 @@
-import React, {FC, useContext, useMemo, useState} from 'react';
-import {Button, Divider, Heading, HStack, Stack, Text} from "@chakra-ui/react";
-import {formatCurrency} from "../../../utilities/formatCurrency";
-import {ICartTotalPrice} from "../../../interfaces/ICartTotalPrice.interface";
-import {useProducts} from "../../../hooks/useProducts";
-import {IProducts} from "../../../interfaces/Iproducts.interface";
-import {IShoppingCartItem} from "../../../interfaces/IShoppingCartItem.interface";
+import React, {FC, useContext} from 'react';
+import {HStack, Stack, StackProps, Text} from "@chakra-ui/react";
+import {orderProvider} from "../../../context/orderProvider";
 
-export const CartTotalPrice: FC<ICartTotalPrice> = ({cartProducts, cartQuantity, ...rest}) => {
+export const CartTotalPrice: FC<StackProps> = ({...rest}) => {
 
-    const {productsArray} = useProducts()
+    const {cartTotal, amount} = useContext(orderProvider)
 
-    const cartTotal = useMemo(() => {
-        return cartProducts.reduce((totalCart: number, item: IShoppingCartItem) =>
-            (item.isChecked ? item.quantity : 0) + totalCart, 0
-        )
-    }, [cartQuantity, cartProducts])
-
-    return <Stack gap={2} pt={2}>
+    return <Stack gap={2} pt={2} {...rest}>
         <HStack justify={"space-between"}>
             <HStack>
                 <Text fontWeight={"bold"}>
@@ -28,16 +18,7 @@ export const CartTotalPrice: FC<ICartTotalPrice> = ({cartProducts, cartQuantity,
                 fontWeight={"bold"}
                 fontSize={20}
             >
-                {
-                    formatCurrency(
-                        cartProducts?.reduce((total, cartItem) => {
-                            const item = productsArray?.find(
-                                (i: IProducts) => (i.id === cartItem.productID && cartItem.isChecked)
-                            )
-                            return total + (item?.price || 0) * cartItem.quantity
-                        }, 0)
-                    )
-                }
+                {amount.toFixed(2)}
             </Text>
         </HStack>
     </Stack>

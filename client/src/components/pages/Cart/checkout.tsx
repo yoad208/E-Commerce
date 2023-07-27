@@ -1,12 +1,11 @@
-import {Button, Divider, Heading, Img, Stack, Text, Wrap, WrapItem} from "@chakra-ui/react";
-import {FC} from "react";
+import {Divider, Heading, Stack, StackProps, Text, Wrap, WrapItem} from "@chakra-ui/react";
+import {FC, useMemo} from "react";
 import {CartTotalPrice} from "./cartTotalPrice";
-import {ICheckout} from "../../../interfaces/ICheckout";
-import {PayPalButtons, PayPalScriptProvider} from "@paypal/react-paypal-js";
 import {PaypalPayment} from "./paypalPayment";
 import {StandardPayment} from "./standardPayment";
+import {OrderProvider} from "../../../context/orderProvider";
 
-const acceptPaymentImages = [
+export const acceptPaymentImages = [
     'https://download.logo.wine/logo/Mastercard/Mastercard-Logo.wine.png',
     'https://www.svgrepo.com/show/328144/visa.svg',
     'https://cdn.worldvectorlogo.com/logos/maestro-2.svg',
@@ -16,22 +15,20 @@ const acceptPaymentImages = [
     'https://cdn-icons-png.flaticon.com/512/196/196559.png',
     'https://www.svgrepo.com/download/328151/discover.svg'
 ]
-export const Checkout: FC<ICheckout> = (
-    {
-        cartProducts,
-        cartQuantity,
-        ...rest
-    }) => {
+export const Checkout: FC<StackProps> = ({...rest}) => {
 
     return <Stack {...rest}>
         <Heading size={'md'} p={2}>Order summary</Heading>
         <Divider/>
-        <CartTotalPrice
-            cartProducts={cartProducts}
-            cartQuantity={cartQuantity}
-        />
-        <StandardPayment/>
-        <PaypalPayment/>
+
+        <OrderProvider>
+            <CartTotalPrice/>
+
+            <StandardPayment/>
+
+            <PaypalPayment/>
+        </OrderProvider>
+
         <Divider/>
         <Text textAlign={'center'} color={'blackAlpha.500'}>
             Coupons/Rewards can be used in the next step

@@ -5,16 +5,44 @@ import cookies from 'cookie-parser'
 import fs from "fs";
 import path from "path";
 import nodemailer from "nodemailer";
+import cors from 'cors'
+import Stripe from 'stripe';
+
 
 const server = Server.create()
 const router = Server.router('public/database.json')
 const middlewares = Server.defaults()
 
+server.use(cors({
+    origin: '*'
+}))
 server.use(cookies())
 server.use(middlewares)
 server.use(Server.bodyParser)
 
 const ACCESS_TOKEN_SECRET = '97ddc9d56853d818546508da54ec6cd37dbef97a2f9a5ce45ff8faacfafdf844f7605cb8290faacf38356cb10e1fbb7e0ab7f9ffbc00a37955f0063d5bc06656'
+
+const stripe = new Stripe(
+    'sk_test_51NPlisJ2tgeUZLVsr6I1EQzv5RBy2X0KfIow8PZU1fU7XI3HhuoVurNfkHqdo9DfaUeD6DQITTuV5Ht8RjgETLwl00kzvtgcrp'
+    , {
+        apiVersion: '2022-11-15',
+    })
+server.post("/create-payment-intent", async (req, res) => {
+    const { amount } = req.body;
+
+    // Create a PaymentIntent with the order amount and currency
+    const paymentIntent = await stripe.paymentIntents.create({
+        amount: amount,
+        currency: "usd",
+        automatic_payment_methods: {
+            enabled: true,
+        },
+    });
+
+    res.send({
+        clientSecret: paymentIntent.client_secret,
+    });
+});
 
 server.post("/login", (req, res) => {
     const data = req.body

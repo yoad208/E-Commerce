@@ -13,6 +13,9 @@ import {EmailVerification} from "./components/layout/emailVerification";
 import {ResetPassword} from "./components/layout/resetPassword";
 import {LoginForm} from "./components/layout/loginForm";
 import {RegisterForm} from "./components/layout/registerForm";
+import {Orders} from "./components/pages/Orders/orders";
+import {StripePayment} from "./components/pages/Cart/stripePayment";
+import {PaymentSucceeded} from "./components/pages/Cart/paymentSucceeded";
 
 const App: FC = () => {
 
@@ -27,6 +30,9 @@ const App: FC = () => {
                         <Route path={'/settings'} element={<Settings/>}/>
                         <Route path={'/store'} element={<Store/>}/>
                         <Route path={'/store/item/:id'} element={<SpecificItem/>}/>
+                        <Route path={'/my-orders'} element={<Orders/>}/>
+                        <Route path={'/checkout'} element={<StripePayment/>}/>
+                        <Route path={'/payment-succeeded'} element={<PaymentSucceeded/>}/>
 
                         {/*authentication routes*/}
                         <Route path={'/auth/email-verification'} element={<EmailVerification/>}/>

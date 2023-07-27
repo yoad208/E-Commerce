@@ -116,7 +116,9 @@
       "likesAmount": 2,
       "salesAmount": 0,
       "inStock": true,
-      "colors": [],
+      "colors": [
+        "white"
+      ],
       "sizes": [
         "xs",
         "s",
@@ -171,7 +173,9 @@
       "likesAmount": 1,
       "salesAmount": 0,
       "inStock": true,
-      "colors": [],
+      "colors": [
+        "white"
+      ],
       "sizes": [
         "xs",
         "s",
@@ -224,7 +228,9 @@
       "likesAmount": -1,
       "salesAmount": 0,
       "inStock": true,
-      "colors": [],
+      "colors": [
+        "white"
+      ],
       "sizes": [
         "xs",
         "s",
@@ -279,7 +285,9 @@
       "likesAmount": 0,
       "salesAmount": 0,
       "inStock": true,
-      "colors": [],
+      "colors": [
+        "white"
+      ],
       "sizes": [
         "xs",
         "s",
@@ -335,7 +343,9 @@
       "likesAmount": 0,
       "salesAmount": 0,
       "inStock": true,
-      "colors": [],
+      "colors": [
+        "white"
+      ],
       "sizes": [
         "xs",
         "s",
@@ -391,7 +401,9 @@
       "likesAmount": 0,
       "salesAmount": 0,
       "inStock": true,
-      "colors": [],
+      "colors": [
+        "white"
+      ],
       "sizes": [
         "xs",
         "s",
@@ -618,7 +630,9 @@
       "likesAmount": 0,
       "salesAmount": 0,
       "inStock": true,
-      "colors": [],
+      "colors": [
+        "white"
+      ],
       "sizes": [],
       "itemSpecifics": [
         {
@@ -664,7 +678,9 @@
       "likesAmount": 0,
       "salesAmount": 0,
       "inStock": true,
-      "colors": [],
+      "colors": [
+        "white"
+      ],
       "sizes": [],
       "itemSpecifics": [
         {
@@ -1022,35 +1038,129 @@
       ]
     }
   ],
-  "wishList": [
-    {
-      "id": "de1f8909-36fe-4d44-8c10-50ae8b6af15b",
-      "userID": "7b64def9-4559-4a6a-8d72-28d7bfb4b5d7",
-      "productID": "1",
-      "size": "xs"
-    },
-    {
-      "id": "1ab020ac-bf86-4bb2-aac3-1ee1b2c3a7f9",
-      "userID": "4ed379f0-f406-493c-aaed-e9c7ad45ee84",
-      "productID": "1",
-      "size": "xs"
-    },
-    {
-      "id": "47b1ae3f-453f-479a-8350-0d6cf8776fe4",
-      "userID": "4ed379f0-f406-493c-aaed-e9c7ad45ee84",
-      "productID": "7",
-      "size": "xs"
-    }
-  ],
+  "wishList": [],
   "shoppingCart": [
     {
-      "id": "529413c6-0158-46b1-9cf5-db06c896fb1c",
+      "id": "0cb877e4-777d-4867-b9cf-6f9e75c045b7",
       "userID": "4ed379f0-f406-493c-aaed-e9c7ad45ee84",
       "productID": "1",
-      "color": "",
+      "color": "white",
       "size": "xs",
-      "quantity": 3,
+      "quantity": 1,
       "isChecked": true
+    }
+  ],
+  "orders": [
+    {
+      "id": "42cf3a30-12ac-47bd-bd85-e495ea2a3887",
+      "status": "active",
+      "userId": "4ed379f0-f406-493c-aaed-e9c7ad45ee84",
+      "payer": {
+        "name": "yoad",
+        "email": "yoad208@gmail.com",
+        "phone": "0549108919"
+      },
+      "address": {
+        "id": "46058a49-deed-421a-8bcc-c006f0aa52ba",
+        "userId": "4ed379f0-f406-493c-aaed-e9c7ad45ee84",
+        "city": "Harish",
+        "country": "Israel",
+        "zipCode": "41532",
+        "addressLine": "hethadshut 6",
+        "createdAt": "2023-07-20T12:33:51.287Z",
+        "updatedAt": "2023-07-20T12:33:51.287Z"
+      },
+      "amount": {
+        "totalPrice": 39,
+        "currency": "USD"
+      },
+      "products": [
+        {
+          "id": "0cb877e4-777d-4867-b9cf-6f9e75c045b7",
+          "userID": "4ed379f0-f406-493c-aaed-e9c7ad45ee84",
+          "productID": "1",
+          "color": "white",
+          "size": "xs",
+          "quantity": 1,
+          "isChecked": true
+        }
+      ],
+      "createdAt": "2023-07-20T12:33:51.287Z",
+      "updatedAt": "2023-07-20T12:33:51.287Z"
+    },
+    {
+      "id": "6c5fd2bc-fd7d-4bb2-b153-f66ea36a27a8",
+      "status": "in-progress",
+      "userId": "4ed379f0-f406-493c-aaed-e9c7ad45ee84",
+      "payer": {
+        "name": "hodaya",
+        "email": "hodaya97@gmail.com",
+        "phone": "0549109365"
+      },
+      "address": {
+        "id": "4c870d59-117e-4a01-8192-b18f14020649",
+        "userId": "4ed379f0-f406-493c-aaed-e9c7ad45ee84",
+        "city": "Harish",
+        "country": "Israel",
+        "zipCode": "415323",
+        "addressLine": "hethadshut 6",
+        "createdAt": "2023-07-20T12:37:15.491Z",
+        "updatedAt": "2023-07-20T12:37:15.491Z"
+      },
+      "amount": {
+        "totalPrice": 39,
+        "currency": "USD"
+      },
+      "products": [
+        {
+          "id": "0cb877e4-777d-4867-b9cf-6f9e75c045b7",
+          "userID": "4ed379f0-f406-493c-aaed-e9c7ad45ee84",
+          "productID": "1",
+          "color": "white",
+          "size": "xs",
+          "quantity": 1,
+          "isChecked": true
+        }
+      ],
+      "createdAt": "2023-07-20T12:37:15.491Z",
+      "updatedAt": "2023-07-20T12:37:15.491Z"
+    },
+    {
+      "id": "5de00b8d-b331-4cb8-8aa9-c76751150463",
+      "status": "in-progress",
+      "userId": "4ed379f0-f406-493c-aaed-e9c7ad45ee84",
+      "payer": {
+        "name": "hodaya",
+        "email": "hodaya@gmail.com",
+        "phone": "0549109365"
+      },
+      "address": {
+        "id": "4371b814-117b-4d6d-8c26-9e269e6edc54",
+        "userId": "4ed379f0-f406-493c-aaed-e9c7ad45ee84",
+        "city": "Harish",
+        "country": "Israel",
+        "zipCode": "51423",
+        "addressLine": "hethadshut 6",
+        "createdAt": "2023-07-20T12:40:22.737Z",
+        "updatedAt": "2023-07-20T12:40:22.737Z"
+      },
+      "amount": {
+        "totalPrice": 39,
+        "currency": "USD"
+      },
+      "products": [
+        {
+          "id": "0cb877e4-777d-4867-b9cf-6f9e75c045b7",
+          "userID": "4ed379f0-f406-493c-aaed-e9c7ad45ee84",
+          "productID": "1",
+          "color": "white",
+          "size": "xs",
+          "quantity": 1,
+          "isChecked": true
+        }
+      ],
+      "createdAt": "2023-07-20T12:40:22.737Z",
+      "updatedAt": "2023-07-20T12:40:22.737Z"
     }
   ]
 }

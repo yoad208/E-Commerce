@@ -7,6 +7,11 @@ export const getUsers = async (): Promise<IUser[]> => {
     return data
 }
 
+export const getUser = async (id: string): Promise<IUser> => {
+    const {data} = await baseUrl.get(`/users/${id}`)
+    return data
+}
+
 export const createToken = async (userEmail: string) => {
     const {data} = await baseUrl.post(`/login`, {email: userEmail})
     return data

@@ -1,5 +1,5 @@
 import {useMutation, useQuery, useQueryClient} from "@tanstack/react-query";
-import {deleteUser, getUsers, postUser, updateUser} from "../api/usersApi";
+import {deleteUser, getUser, getUsers, postUser, updateUser} from "../api/usersApi";
 import {IUser} from "../interfaces/IUser.interface";
 import {useGenerateToken} from "./useGenerateToken";
 import {LoginStatus, validateLogin} from "../utilities/loginValidation";

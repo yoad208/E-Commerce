@@ -1,7 +1,6 @@
 import React, {FC, useRef} from 'react';
 import categories from '../../../json/categories.json'
 import mainImages from '../../../json/mainImages.json'
-import {useLocation, useNavigate} from "react-router-dom";
 import {Carousel} from "../../customComps/carousel";
 import {ProductCard} from "../../customComps/productCard";
 import {Icon} from "@chakra-ui/icons";

@@ -12,7 +12,7 @@ import {useUrlParams} from "../../../hooks/useUrlParams";
 import {useQueryString} from "../../../hooks/useQueryString";
 import {ICategoryName} from "../../../interfaces/ICategoryName.interface";
 import {ICategories} from "../../../interfaces/ICategories.interface";
-import {useNavigate} from "react-router-dom";
+
 
 const CategoryName: FC<ICategoryName> = ({categoryImage, categoryName, categoryID: CID}) => {
 
